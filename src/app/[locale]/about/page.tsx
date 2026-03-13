@@ -4,7 +4,7 @@ export default function AboutPage() {
   const t = useTranslations('aboutPage')
 
   return (
-    <main className="min-h-screen px-4 pt-24">
+    <main className="min-h-screen bg-cream px-4 pt-24">
       <div className="mx-auto max-w-3xl py-16">
         <h1 className="mb-8 text-4xl font-bold text-dark md:text-5xl">
           {t('title')}

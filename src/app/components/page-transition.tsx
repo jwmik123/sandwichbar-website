@@ -9,14 +9,15 @@ import {
   useState,
   type ReactNode,
 } from 'react'
-import { useRouter, usePathname } from 'next/navigation'
+import { useLocale } from 'next-intl'
+import { useRouter, usePathname } from '@/i18n/navigation'
 import gsap from 'gsap'
 import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin'
 
 gsap.registerPlugin(DrawSVGPlugin)
 
 type TransitionContextType = {
-  navigate: (href: string) => void
+  navigate: (href: string, locale?: string) => void
   isAnimating: boolean
 }
 
@@ -32,36 +33,44 @@ export function usePageTransition() {
 export function PageTransition({ children }: { children: ReactNode }) {
   const router = useRouter()
   const pathname = usePathname()
+  const locale = useLocale()
   const pathRef = useRef<SVGPathElement>(null)
   const animatingRef = useRef(false)
   const [isAnimating, setIsAnimating] = useState(false)
   const pendingPathRef = useRef<string | null>(null)
+  const pendingLocaleRef = useRef<string | null>(null)
 
   const reducedMotion =
     typeof window !== 'undefined' &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
   const navigate = useCallback(
-    (href: string) => {
-      if (animatingRef.current || href === pathname) return
+    (href: string, targetLocale?: string) => {
+      const isSamePath = href === pathname
+      const isSameLocale = !targetLocale || targetLocale === locale
+      if (animatingRef.current || (isSamePath && isSameLocale)) return
       animatingRef.current = true
       setIsAnimating(true)
 
       const svgPath = pathRef.current
 
       if (!svgPath || reducedMotion) {
-        router.push(href)
+        router.push(href, targetLocale ? { locale: targetLocale } : undefined)
         animatingRef.current = false
         setIsAnimating(false)
         return
       }
 
-      pendingPathRef.current = href
+      if (targetLocale) {
+        pendingLocaleRef.current = targetLocale
+      } else {
+        pendingPathRef.current = href
+      }
 
       // --- Leave animation ---
       const tl = gsap.timeline({
         onComplete: () => {
-          router.push(href)
+          router.push(href, targetLocale ? { locale: targetLocale } : undefined)
         },
       })
 
@@ -86,14 +95,17 @@ export function PageTransition({ children }: { children: ReactNode }) {
         '< 0.25',
       )
     },
-    [router, pathname, reducedMotion],
+    [router, pathname, locale, reducedMotion],
   )
 
   // --- Enter animation after route change ---
   useEffect(() => {
-    if (!pendingPathRef.current || pathname !== pendingPathRef.current) return
+    const pathMatch = pendingPathRef.current !== null && pathname === pendingPathRef.current
+    const localeMatch = pendingLocaleRef.current !== null && locale === pendingLocaleRef.current
+    if (!pathMatch && !localeMatch) return
 
     pendingPathRef.current = null
+    pendingLocaleRef.current = null
     const svgPath = pathRef.current
 
     if (!svgPath) {
@@ -128,7 +140,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
         '< 0.75',
       )
     }
-  }, [pathname])
+  }, [pathname, locale])
 
   return (
     <TransitionContext.Provider value={{ navigate, isAnimating }}>

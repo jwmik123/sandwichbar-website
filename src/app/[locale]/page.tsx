@@ -8,7 +8,6 @@ import {
   TESTIMONIALS_QUERY,
   CONTACT_INFO_QUERY,
 } from '@/sanity/lib/queries'
-import { localizedId } from '@/sanity/lib/localization'
 import { HeroSection } from '../components/hero-section'
 import { SloganSection } from '../components/slogan-section'
 import { SocialMediaSection } from '../components/social-media-section'
@@ -24,14 +23,7 @@ import { Footer } from '../components/footer'
 export default async function Home() {
   const locale = await getLocale()
 
-  const params = {
-    heroId: localizedId('hero', locale),
-    sloganId: localizedId('slogan', locale),
-    socialMediaId: localizedId('socialMedia', locale),
-    menuSectionId: localizedId('menuSection', locale),
-    testimonialsId: localizedId('testimonials', locale),
-    contactInfoId: localizedId('contactInfo', locale),
-  }
+  const params = { locale }
 
   const [hero, slogan, socialMedia, menu, testimonials, contact] = await Promise.all([
     sanityFetch({ query: HERO_QUERY, params }),

@@ -7,44 +7,19 @@ const MENU_FIELDS = `_id, _type, categories[]{ _key, name, items[]{ _key, name, 
 const TESTIMONIALS_FIELDS = `_id, _type, items[]{ _key, author, quote, rating }`
 const CONTACT_FIELDS = `_id, _type, address, phone, email, openingHours[]{ _key, day, time }`
 
-export const HERO_QUERY = defineQuery(
-  `coalesce(
-    *[_type == "hero" && _id == $heroId][0]{${HERO_FIELDS}},
-    *[_type == "hero" && _id == "hero"][0]{${HERO_FIELDS}}
+// Resolves a translated document via the translation.metadata document.
+// Falls back to the default-locale document if no translation exists.
+function translatedQuery(type: string, baseId: string, fields: string): string {
+  return `coalesce(
+    *[_type == "translation.metadata" && $locale in translations[].language && references("${baseId}")][0]
+      .translations[language == $locale][0].value->{${fields}},
+    *[_type == "${type}" && _id == "${baseId}"][0]{${fields}}
   )`
-)
+}
 
-export const SLOGAN_QUERY = defineQuery(
-  `coalesce(
-    *[_type == "slogan" && _id == $sloganId][0]{${SLOGAN_FIELDS}},
-    *[_type == "slogan" && _id == "slogan"][0]{${SLOGAN_FIELDS}}
-  )`
-)
-
-export const SOCIAL_MEDIA_QUERY = defineQuery(
-  `coalesce(
-    *[_type == "socialMedia" && _id == $socialMediaId][0]{${SOCIAL_MEDIA_FIELDS}},
-    *[_type == "socialMedia" && _id == "socialMedia"][0]{${SOCIAL_MEDIA_FIELDS}}
-  )`
-)
-
-export const MENU_SECTION_QUERY = defineQuery(
-  `coalesce(
-    *[_type == "menuSection" && _id == $menuSectionId][0]{${MENU_FIELDS}},
-    *[_type == "menuSection" && _id == "menuSection"][0]{${MENU_FIELDS}}
-  )`
-)
-
-export const TESTIMONIALS_QUERY = defineQuery(
-  `coalesce(
-    *[_type == "testimonials" && _id == $testimonialsId][0]{${TESTIMONIALS_FIELDS}},
-    *[_type == "testimonials" && _id == "testimonials"][0]{${TESTIMONIALS_FIELDS}}
-  )`
-)
-
-export const CONTACT_INFO_QUERY = defineQuery(
-  `coalesce(
-    *[_type == "contactInfo" && _id == $contactInfoId][0]{${CONTACT_FIELDS}},
-    *[_type == "contactInfo" && _id == "contactInfo"][0]{${CONTACT_FIELDS}}
-  )`
-)
+export const HERO_QUERY = defineQuery(translatedQuery('hero', 'hero', HERO_FIELDS))
+export const SLOGAN_QUERY = defineQuery(translatedQuery('slogan', 'slogan', SLOGAN_FIELDS))
+export const SOCIAL_MEDIA_QUERY = defineQuery(translatedQuery('socialMedia', 'socialMedia', SOCIAL_MEDIA_FIELDS))
+export const MENU_SECTION_QUERY = defineQuery(translatedQuery('menuSection', 'menuSection', MENU_FIELDS))
+export const TESTIMONIALS_QUERY = defineQuery(translatedQuery('testimonials', 'testimonials', TESTIMONIALS_FIELDS))
+export const CONTACT_INFO_QUERY = defineQuery(translatedQuery('contactInfo', 'contactInfo', CONTACT_FIELDS))

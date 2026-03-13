@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { TransitionLink } from './transition-link'
 import { useTranslations, useLocale } from 'next-intl'
-import { Link, usePathname } from '@/i18n/navigation'
+import { usePathname } from '@/i18n/navigation'
 
 const socialLinks = [
   {
@@ -67,9 +67,9 @@ export function Navigation() {
             </a>
           ))}
           <div className="flex gap-1.5 text-xs text-cream/50 pt-1">
-            <Link href={pathname} locale="nl" className={`transition-colors duration-200 hover:text-cream ${locale === 'nl' ? 'text-cream font-semibold' : ''}`}>NL</Link>
+            <TransitionLink href={pathname} locale="nl" className={`transition-colors duration-200 hover:text-cream ${locale === 'nl' ? 'text-cream font-semibold' : ''}`}>NL</TransitionLink>
             <span>/</span>
-            <Link href={pathname} locale="en" className={`transition-colors duration-200 hover:text-cream ${locale === 'en' ? 'text-cream font-semibold' : ''}`}>EN</Link>
+            <TransitionLink href={pathname} locale="en" className={`transition-colors duration-200 hover:text-cream ${locale === 'en' ? 'text-cream font-semibold' : ''}`}>EN</TransitionLink>
           </div>
         </div>
 

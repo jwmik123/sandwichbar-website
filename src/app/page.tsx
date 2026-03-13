@@ -20,13 +20,22 @@ import { LocationSection } from './components/location-section'
 import { Footer } from './components/footer'
 
 export default async function Home() {
+  const params = {
+    heroId: '',
+    sloganId: '',
+    socialMediaId: '',
+    menuSectionId: '',
+    testimonialsId: '',
+    contactInfoId: '',
+  }
+
   const [hero, slogan, socialMedia, menu, testimonials, contact] = await Promise.all([
-    sanityFetch({ query: HERO_QUERY }),
-    sanityFetch({ query: SLOGAN_QUERY }),
-    sanityFetch({ query: SOCIAL_MEDIA_QUERY }),
-    sanityFetch({ query: MENU_SECTION_QUERY }),
-    sanityFetch({ query: TESTIMONIALS_QUERY }),
-    sanityFetch({ query: CONTACT_INFO_QUERY }),
+    sanityFetch({ query: HERO_QUERY, params }),
+    sanityFetch({ query: SLOGAN_QUERY, params }),
+    sanityFetch({ query: SOCIAL_MEDIA_QUERY, params }),
+    sanityFetch({ query: MENU_SECTION_QUERY, params }),
+    sanityFetch({ query: TESTIMONIALS_QUERY, params }),
+    sanityFetch({ query: CONTACT_INFO_QUERY, params }),
   ])
 
   return (

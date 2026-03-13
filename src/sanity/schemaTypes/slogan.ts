@@ -8,6 +8,12 @@ export const slogan = defineType({
   icon: BlockContentIcon,
   fields: [
     defineField({
+      name: 'language',
+      type: 'string',
+      readOnly: true,
+      hidden: true,
+    }),
+    defineField({
       name: 'text',
       title: 'Slogan Text',
       type: 'text',

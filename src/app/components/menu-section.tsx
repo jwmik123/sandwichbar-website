@@ -2,6 +2,7 @@
 
 import { useRef } from 'react'
 import { createDataAttribute } from 'next-sanity'
+import { useTranslations } from 'next-intl'
 
 type MenuItem = {
   _key: string
@@ -24,6 +25,7 @@ type MenuData = {
 
 export function MenuSection({ data }: { data: MenuData | null }) {
   const ref = useRef<HTMLElement>(null)
+  const t = useTranslations('menuSection')
 
   if (!data?.categories?.length) return null
 
@@ -39,7 +41,7 @@ export function MenuSection({ data }: { data: MenuData | null }) {
       className="px-4 py-24"
     >
       <h2 className="mb-12 text-center text-3xl font-bold text-dark md:text-4xl">
-        Our Menu
+        {t('title')}
       </h2>
       <div
         className="mx-auto max-w-4xl space-y-12"

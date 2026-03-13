@@ -16,6 +16,8 @@ import { ContactSection } from './components/contact-section'
 import { AboutSection } from './components/about-section'
 import { ImageSection } from './components/image-section'
 import { SandwichSlider } from './components/sandwich-slider'
+import { LocationSection } from './components/location-section'
+import { Footer } from './components/footer'
 
 export default async function Home() {
   const [hero, slogan, socialMedia, menu, testimonials, contact] = await Promise.all([
@@ -37,7 +39,9 @@ export default async function Home() {
       <SocialMediaSection data={socialMedia.data} />
       <MenuSection data={menu.data} />
       <TestimonialsSection data={testimonials.data} />
+      <LocationSection />
       <ContactSection data={contact.data} />
+      <Footer openingHours={contact.data?.openingHours} />
     </>
   )
 }

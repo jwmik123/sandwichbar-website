@@ -6,6 +6,7 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { Draggable } from 'gsap/Draggable'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useTranslations, useLocale } from 'next-intl'
 
 gsap.registerPlugin(Draggable, ScrollTrigger)
 
@@ -16,28 +17,24 @@ type Sandwich = {
   image: string
 }
 
-const SANDWICHES: Sandwich[] = [
-  {
-    id: '1',
-    name: 'Sandwich 1',
-    ingredients: ['Ingredient', 'Ingredient', 'Ingredient'],
-    image: '/images/The Sandwichbar - Vrijstaand 1.webp',
-  },
-  {
-    id: '2',
-    name: 'Sandwich 2',
-    ingredients: ['Ingredient', 'Ingredient', 'Ingredient'],
-    image: '/images/The Sandwichbar - Vrijstaand 2.webp',
-  },
-  {
-    id: '3',
-    name: 'Sandwich 3',
-    ingredients: ['Ingredient', 'Ingredient', 'Ingredient'],
-    image: '/images/The Sandwichbar - Vrijstaand 3.webp',
-  },
-]
+const SANDWICHES_BY_LOCALE: Record<string, Sandwich[]> = {
+  nl: [
+    { id: '1', name: 'Avocado Special', ingredients: ['ei', 'rode ui', 'radijs', 'sriracha mayonaise', 'alfalfa kiemen'], image: '/images/The Sandwichbar - Vrijstaand 1.webp' },
+    { id: '2', name: 'Spicy Chicken', ingredients: ['rode ui', 'sriracha mayonaise'], image: '/images/The Sandwichbar - Vrijstaand 2.webp' },
+    { id: '3', name: 'Mortadella', ingredients: ['mortadella', 'ricotta pesto', 'burrata', 'parmezaan en pistache'], image: '/images/The Sandwichbar - Vrijstaand 3.webp' },
+  ],
+  en: [
+    { id: '1', name: 'Avocado Special', ingredients: ['egg', 'red onion', 'radish', 'sriracha mayonnaise', 'alfalfa sprouts'], image: '/images/The Sandwichbar - Vrijstaand 1.webp' },
+    { id: '2', name: 'Spicy Chicken', ingredients: ['red onion', 'sriracha mayonnaise'], image: '/images/The Sandwichbar - Vrijstaand 2.webp' },
+    { id: '3', name: 'Mortadella', ingredients: ['mortadella', 'ricotta pesto', 'burrata', 'parmesan and pistachio'], image: '/images/The Sandwichbar - Vrijstaand 3.webp' },
+  ],
+}
 
 export function SandwichSlider() {
+  const t = useTranslations('sandwichSlider')
+  const locale = useLocale()
+  const SANDWICHES = SANDWICHES_BY_LOCALE[locale] ?? SANDWICHES_BY_LOCALE.nl
+
   const sectionRef = useRef<HTMLElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
   const pathRef = useRef<SVGPathElement>(null)
@@ -129,14 +126,14 @@ export function SandwichSlider() {
       <div className="max-w-7xl mx-auto px-6 w-full">
         <div className="flex items-end justify-between">
           <h2 className="text-4xl md:text-5xl font-bold text-plum uppercase leading-tight">
-            Onze Favoriete<br />Sandwiches
+            {t('titlePrefix')} <br /> <span className="font-tomatoes lowercase text-6xl">{t('titleAccent')}</span>
           </h2>
 
           <div className="flex items-center gap-3">
             <button
               onClick={() => animateTo(current - 1)}
               disabled={current === 0}
-              aria-label="Vorige sandwich"
+              aria-label={t('prevSlide')}
               className="w-12 h-12 rounded-full border-2 border-plum flex items-center justify-center text-plum transition-all duration-200 hover:bg-plum hover:text-cream disabled:opacity-25 disabled:cursor-not-allowed"
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -146,7 +143,7 @@ export function SandwichSlider() {
             <button
               onClick={() => animateTo(current + 1)}
               disabled={current === maxIndex}
-              aria-label="Volgende sandwich"
+              aria-label={t('nextSlide')}
               className="w-12 h-12 rounded-full border-2 border-plum flex items-center justify-center text-plum transition-all duration-200 hover:bg-plum hover:text-cream disabled:opacity-25 disabled:cursor-not-allowed"
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -160,7 +157,7 @@ export function SandwichSlider() {
       {/* Full-bleed slider track — grows to fill remaining height */}
       <div
         ref={trackRef}
-        className="flex flex-1 will-change-transform cursor-grab active:cursor-grabbing select-none mt-10"
+        className="flex flex-1 will-change-transform cursor-grab active:cursor-grabbing select-none mt-0"
       >
         {SANDWICHES.map((sandwich) => (
           <div
@@ -180,7 +177,7 @@ export function SandwichSlider() {
               />
             </div>
 
-            <h3 className="mt-8 text-3xl md:text-4xl font-bold text-plum text-center leading-tight">
+            <h3 className="mt-0 text-3xl md:text-4xl font-bold text-plum text-center leading-tight">
               {sandwich.name}
             </h3>
 
@@ -197,7 +194,7 @@ export function SandwichSlider() {
           <button
             key={i}
             onClick={() => animateTo(i)}
-            aria-label={`Ga naar sandwich ${i + 1}`}
+            aria-label={t('goToSlide', { n: i + 1 })}
             className={`rounded-full transition-all duration-300 ${
               i === current
                 ? 'w-6 h-2 bg-plum'

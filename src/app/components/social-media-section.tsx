@@ -5,6 +5,7 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { InertiaPlugin } from 'gsap/InertiaPlugin'
 import { createDataAttribute } from 'next-sanity'
+import { useTranslations } from 'next-intl'
 
 gsap.registerPlugin(InertiaPlugin)
 
@@ -30,6 +31,7 @@ function VideoCard({
   video: Video
   sanityAttr: string
 }) {
+  const t = useTranslations('socialMedia')
   const videoRef = useRef<HTMLVideoElement>(null)
   const [isMuted, setIsMuted] = useState(true)
   const [isPlaying, setIsPlaying] = useState(false)
@@ -109,7 +111,7 @@ function VideoCard({
           {video.videoFileUrl && (
             <button
               onClick={toggleMute}
-              aria-label={isMuted ? 'Geluid aan' : 'Geluid uit'}
+              aria-label={isMuted ? t('soundOn') : t('soundOff')}
               className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-cream opacity-0 backdrop-blur-sm transition-opacity duration-200 group-hover:opacity-100 hover:bg-black/70"
             >
               {isMuted ? <MutedIcon /> : <UnmutedIcon />}
@@ -120,7 +122,7 @@ function VideoCard({
           {video.videoFileUrl && (
             <button
               onClick={togglePlay}
-              aria-label={isPlaying ? 'Pauzeren' : 'Afspelen'}
+              aria-label={isPlaying ? t('pause') : t('play')}
               className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 group-hover:opacity-100"
             >
               <span className="flex h-14 w-14 items-center justify-center rounded-full bg-black/40 backdrop-blur-sm transition-transform duration-150 hover:scale-110">
@@ -145,7 +147,7 @@ function VideoCard({
                 className="mt-1.5 flex items-center gap-1.5 text-xs text-cream/60 transition-colors hover:text-cream"
               >
                 <TikTokIcon className="h-3 w-3" />
-                Bekijk op TikTok
+                {t('watchOnTikTok')}
               </a>
             )}
           </div>
@@ -158,6 +160,7 @@ function VideoCard({
 // ── Main section ──────────────────────────────────────────────────────────────
 
 export function SocialMediaSection({ data }: { data: SocialMediaData | null }) {
+  const t = useTranslations('socialMedia')
   const sectionRef = useRef<HTMLElement>(null)
 
   useGSAP(() => {
@@ -233,8 +236,8 @@ export function SocialMediaSection({ data }: { data: SocialMediaData | null }) {
       className="flex items-center justify-center bg-dark py-24"
     >
       <div className="flex w-full max-w-[80em] flex-col px-12">
-        <h2 className="mb-12 text-4xl font-bold uppercase tracking-tight text-cream md:text-5xl">
-          Volg ons op TikTok
+        <h2 className="mb-12 text-4xl font-bold uppercase tracking-tight text-center text-cream md:text-5xl">
+          {t('title')} <span className="font-tomatoes lowercase">TikTok</span>
         </h2>
 
         <div

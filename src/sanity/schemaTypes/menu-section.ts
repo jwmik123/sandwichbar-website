@@ -8,6 +8,12 @@ export const menuSection = defineType({
   icon: MenuIcon,
   fields: [
     defineField({
+      name: 'language',
+      type: 'string',
+      readOnly: true,
+      hidden: true,
+    }),
+    defineField({
       name: 'categories',
       title: 'Categories',
       type: 'array',

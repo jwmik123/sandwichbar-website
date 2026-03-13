@@ -8,6 +8,12 @@ export const socialMedia = defineType({
   icon: PlayIcon,
   fields: [
     defineField({
+      name: 'language',
+      type: 'string',
+      readOnly: true,
+      hidden: true,
+    }),
+    defineField({
       name: 'videos',
       title: 'Videos',
       type: 'array',

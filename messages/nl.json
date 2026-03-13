@@ -1,0 +1,73 @@
+{
+  "nav": {
+    "about": "Over ons",
+    "menu": "Menu"
+  },
+  "footer": {
+    "home": "Home",
+    "menu": "Menu",
+    "about": "Over ons",
+    "privacy": "Privacy",
+    "legal": "Juridisch",
+    "followUs": "Volg ons",
+    "openNow": "Nu open",
+    "currentlyClosed": "Momenteel gesloten",
+    "tagline": "Verse sandwiches, warme sfeer en alles van The Sandwich Bar — volg ons voor dagelijkse specials en momenten achter de toonbank.",
+    "siteBy": "Site door Joel Mik"
+  },
+  "contact": {
+    "title": "Bezoek ons",
+    "address": "Adres",
+    "phone": "Telefoon",
+    "email": "E-mail",
+    "openingHours": "Openingstijden"
+  },
+  "menuSection": {
+    "title": "Ons Menu"
+  },
+  "testimonials": {
+    "title": "Wat mensen zeggen"
+  },
+  "aboutPage": {
+    "title": "Over ons",
+    "p1": "Welkom bij The Sandwich Bar — waar elke sandwich met zorg, verse ingrediënten en veel liefde wordt gemaakt.",
+    "p2": "Opgericht met een simpele missie: de beste sandwiches van de stad maken. We halen ons brood van lokale bakkers, ons vlees van betrouwbare boerderijen en onze groenten van nabijgelegen telers.",
+    "p3": "Of je nu snel een lunch pakt of rustig wil zitten, wij zorgen dat je dag iets lekkerder wordt."
+  },
+  "aboutSection": {
+    "p1": "The Sandwich Bar is dé plek in Amsterdam voor een verse, klassieke sandwich — bereid met hoogwaardige, lokaal ingekochte ingrediënten. Van een simpele kaas tot onze beroemde pittige kip, aangevuld met verse sappen en baristakoffie van Bocca Amsterdam.",
+    "p2": "Kom langs voor een snelle lunch of een relaxed moment met vrienden. Haast? Bel van tevoren en wij zorgen dat je sandwich klaarstaat."
+  },
+  "sandwichSlider": {
+    "titlePrefix": "Onze",
+    "titleAccent": "Sandwiches",
+    "prevSlide": "Vorige sandwich",
+    "nextSlide": "Volgende sandwich",
+    "goToSlide": "Ga naar sandwich {n}"
+  },
+  "socialMedia": {
+    "title": "Volg ons op",
+    "watchOnTikTok": "Bekijk op TikTok",
+    "soundOn": "Geluid aan",
+    "soundOff": "Geluid uit",
+    "pause": "Pauzeren",
+    "play": "Afspelen"
+  },
+  "location": {
+    "titlePrefix": "Onze",
+    "titleAccent": "Locaties",
+    "openingHours": "Openingstijden",
+    "open": "Open",
+    "closed": "Gesloten",
+    "openInMaps": "Open in Google Maps",
+    "days": {
+      "monday": "Maandag",
+      "tuesday": "Dinsdag",
+      "wednesday": "Woensdag",
+      "thursday": "Donderdag",
+      "friday": "Vrijdag",
+      "saturday": "Zaterdag",
+      "sunday": "Zondag"
+    }
+  }
+}

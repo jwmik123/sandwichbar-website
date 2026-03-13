@@ -45,7 +45,7 @@ export function HeroSection({ data }: { data: HeroData | null }) {
       {/* Title — centered */}
       <div className="absolute top-[38%] left-[50%] z-[20] flex items-center justify-center px-6 -translate-x-1/2 -translate-y-1/2">
         <h1
-          className="text-center text-7xl uppercase font-bold tracking-tighter text-cream blur-[1px] md:text-9xl leading-none"
+          className="text-center text-7xl font-bold tracking-tighter text-cream uppercase blur-[1px] md:text-9xl leading-none"
           data-sanity={attr.scope('title').toString()}
         >
           {data.title}

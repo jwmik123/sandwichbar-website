@@ -1,6 +1,9 @@
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 
 export function AboutSection() {
+  const t = useTranslations('aboutSection')
+
   return (
     <section className="bg-cream pb-20 px-6 relative overflow-hidden">
       <div className="mx-auto max-w-3xl flex flex-col items-center gap-10 text-center">
@@ -25,10 +28,10 @@ export function AboutSection() {
 
         <div className="flex flex-col gap-6 max-w-2xl">
           <p className="text-plum text-lg leading-relaxed">
-            The Sandwich Bar is dé plek in Amsterdam voor een verse, klassieke sandwich — bereid met hoogwaardige, lokaal ingekochte ingrediënten. Van een simpele kaas tot onze beroemde pittige kip, aangevuld met verse sappen en baristakoffie van Bocca Amsterdam.
+            {t('p1')}
           </p>
           <p className="text-plum text-lg leading-relaxed">
-            Kom langs voor een snelle lunch of een relaxed moment met vrienden. Haast? Bel van tevoren en wij zorgen dat je sandwich klaarstaat.
+            {t('p2')}
           </p>
         </div>
       </div>

@@ -1,0 +1,73 @@
+{
+  "nav": {
+    "about": "About",
+    "menu": "Menu"
+  },
+  "footer": {
+    "home": "Home",
+    "menu": "Menu",
+    "about": "About",
+    "privacy": "Privacy",
+    "legal": "Legal",
+    "followUs": "Follow us",
+    "openNow": "Open now",
+    "currentlyClosed": "Currently closed",
+    "tagline": "Fresh sandwiches, warm vibes, and all things The Sandwich Bar — follow along for daily specials and behind-the-counter moments.",
+    "siteBy": "Site by Joel Mik"
+  },
+  "contact": {
+    "title": "Visit Us",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "openingHours": "Opening Hours"
+  },
+  "menuSection": {
+    "title": "Our Menu"
+  },
+  "testimonials": {
+    "title": "What People Say"
+  },
+  "aboutPage": {
+    "title": "About Us",
+    "p1": "Welcome to The Sandwich Bar — where every sandwich is crafted with care, fresh ingredients, and a whole lot of love.",
+    "p2": "Founded with a simple mission: to make the best sandwiches in town. We source our bread from local bakeries, our meats from trusted farms, and our vegetables from nearby growers.",
+    "p3": "Whether you're grabbing a quick lunch or sitting down for a leisurely meal, we're here to make your day a little tastier."
+  },
+  "aboutSection": {
+    "p1": "The Sandwich Bar is the place in Amsterdam for a fresh, classic sandwich — made with high-quality, locally sourced ingredients. From a simple cheese to our famous spicy chicken, complemented by fresh juices and barista coffee from Bocca Amsterdam.",
+    "p2": "Come by for a quick lunch or a relaxed moment with friends. In a hurry? Call ahead and we'll have your sandwich ready."
+  },
+  "sandwichSlider": {
+    "titlePrefix": "Our",
+    "titleAccent": "Sandwiches",
+    "prevSlide": "Previous sandwich",
+    "nextSlide": "Next sandwich",
+    "goToSlide": "Go to sandwich {n}"
+  },
+  "socialMedia": {
+    "title": "Follow us on",
+    "watchOnTikTok": "Watch on TikTok",
+    "soundOn": "Sound on",
+    "soundOff": "Sound off",
+    "pause": "Pause",
+    "play": "Play"
+  },
+  "location": {
+    "titlePrefix": "Our",
+    "titleAccent": "Locations",
+    "openingHours": "Opening hours",
+    "open": "Open",
+    "closed": "Closed",
+    "openInMaps": "Open in Google Maps",
+    "days": {
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday"
+    }
+  }
+}

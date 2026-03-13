@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { TransitionLink } from './transition-link'
+import { useTranslations, useLocale } from 'next-intl'
+import { Link, usePathname } from '@/i18n/navigation'
 
 const socialLinks = [
   {
@@ -27,12 +29,10 @@ const socialLinks = [
   },
 ]
 
-const navLinks = [
-  { href: '/about', label: 'About' },
-  { href: '/menu', label: 'Menu' },
-]
-
 export function Navigation() {
+  const t = useTranslations('nav')
+  const locale = useLocale()
+  const pathname = usePathname()
   const [mouse, setMouse] = useState({ x: 0, y: 0 })
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export function Navigation() {
   return (
     <nav className="pointer-events-none fixed inset-x-0 top-0 z-50">
       <div className="relative flex items-start justify-between px-10 pt-10">
-        {/* Social links — left */}
+        {/* Social links + locale switcher — left */}
         <div className="pointer-events-auto flex flex-col gap-5">
           {socialLinks.map((link) => (
             <a
@@ -66,6 +66,11 @@ export function Navigation() {
               {link.icon}
             </a>
           ))}
+          <div className="flex gap-1.5 text-xs text-cream/50 pt-1">
+            <Link href={pathname} locale="nl" className={`transition-colors duration-200 hover:text-cream ${locale === 'nl' ? 'text-cream font-semibold' : ''}`}>NL</Link>
+            <span>/</span>
+            <Link href={pathname} locale="en" className={`transition-colors duration-200 hover:text-cream ${locale === 'en' ? 'text-cream font-semibold' : ''}`}>EN</Link>
+          </div>
         </div>
 
         {/* Logo — center, parallax */}
@@ -90,7 +95,7 @@ export function Navigation() {
 
         {/* Nav links — right */}
         <div className="pointer-events-auto flex flex-col items-end gap-3">
-          {navLinks.map((link) => (
+          {([{ href: '/about', label: t('about') }, { href: '/menu', label: t('menu') }] as const).map((link) => (
             <TransitionLink
               key={link.href}
               href={link.href}

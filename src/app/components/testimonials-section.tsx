@@ -2,6 +2,7 @@
 
 import { useRef } from 'react'
 import { createDataAttribute } from 'next-sanity'
+import { useTranslations } from 'next-intl'
 
 type Testimonial = {
   _key: string
@@ -18,6 +19,7 @@ type TestimonialsData = {
 
 export function TestimonialsSection({ data }: { data: TestimonialsData | null }) {
   const ref = useRef<HTMLElement>(null)
+  const t = useTranslations('testimonials')
 
   if (!data?.items?.length) return null
 
@@ -32,7 +34,7 @@ export function TestimonialsSection({ data }: { data: TestimonialsData | null })
       className="px-4 py-24"
     >
       <h2 className="mb-12 text-center text-3xl font-bold text-dark md:text-4xl">
-        What People Say
+        {t('title')}
       </h2>
       <div
         className="mx-auto grid max-w-6xl gap-8 md:grid-cols-2 lg:grid-cols-3"

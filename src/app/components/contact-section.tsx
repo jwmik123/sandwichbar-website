@@ -2,6 +2,7 @@
 
 import { useRef } from 'react'
 import { createDataAttribute } from 'next-sanity'
+import { useTranslations } from 'next-intl'
 
 type OpeningHour = {
   _key: string
@@ -20,6 +21,7 @@ type ContactData = {
 
 export function ContactSection({ data }: { data: ContactData | null }) {
   const ref = useRef<HTMLElement>(null)
+  const t = useTranslations('contact')
 
   if (!data) return null
 
@@ -34,13 +36,13 @@ export function ContactSection({ data }: { data: ContactData | null }) {
       className="bg-dark px-4 py-24 text-cream/80"
     >
       <h2 className="mb-12 text-center text-3xl font-bold text-cream md:text-4xl">
-        Visit Us
+        {t('title')}
       </h2>
       <div className="mx-auto grid max-w-4xl gap-12 md:grid-cols-2">
         <div className="space-y-6">
           {data.address && (
             <div>
-              <h3 className="mb-2 text-lg font-semibold text-cream">Address</h3>
+              <h3 className="mb-2 text-lg font-semibold text-cream">{t('address')}</h3>
               <p
                 className="whitespace-pre-line"
                 data-sanity={attr.scope('address').toString()}
@@ -51,7 +53,7 @@ export function ContactSection({ data }: { data: ContactData | null }) {
           )}
           {data.phone && (
             <div>
-              <h3 className="mb-2 text-lg font-semibold text-cream">Phone</h3>
+              <h3 className="mb-2 text-lg font-semibold text-cream">{t('phone')}</h3>
               <p data-sanity={attr.scope('phone').toString()}>
                 <a href={`tel:${data.phone}`} className="hover:text-cream">
                   {data.phone}
@@ -61,7 +63,7 @@ export function ContactSection({ data }: { data: ContactData | null }) {
           )}
           {data.email && (
             <div>
-              <h3 className="mb-2 text-lg font-semibold text-cream">Email</h3>
+              <h3 className="mb-2 text-lg font-semibold text-cream">{t('email')}</h3>
               <p data-sanity={attr.scope('email').toString()}>
                 <a href={`mailto:${data.email}`} className="hover:text-cream">
                   {data.email}
@@ -72,7 +74,7 @@ export function ContactSection({ data }: { data: ContactData | null }) {
         </div>
         {data.openingHours?.length ? (
           <div>
-            <h3 className="mb-4 text-lg font-semibold text-cream">Opening Hours</h3>
+            <h3 className="mb-4 text-lg font-semibold text-cream">{t('openingHours')}</h3>
             <dl
               className="space-y-2"
               data-sanity={attr.scope('openingHours').toString()}

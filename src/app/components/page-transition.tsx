@@ -17,6 +17,10 @@ import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin'
 
 gsap.registerPlugin(DrawSVGPlugin)
 
+// Module-level flag — survives component remounts (which happen on locale change
+// because the [locale] layout segment is replaced by Next.js).
+let pendingNavigation = false
+
 type TransitionContextType = {
   navigate: (href: string, locale?: string) => void
   isAnimating: boolean
@@ -39,6 +43,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
   const pathRef = useRef<SVGPathElement>(null)
   const animatingRef = useRef(false)
   const [isAnimating, setIsAnimating] = useState(false)
+  // pendingRef for same-instance navigations (path changes within same locale)
   const pendingRef = useRef(false)
 
   const reducedMotion =
@@ -63,6 +68,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
       }
 
       pendingRef.current = true
+      pendingNavigation = true
 
       // --- Leave animation ---
       const tl = gsap.timeline({
@@ -96,11 +102,11 @@ export function PageTransition({ children }: { children: ReactNode }) {
   )
 
   // --- Enter animation after route change ---
-  // fullPathname changes for both path changes (/nl/about → /nl/menu)
-  // and locale switches (/nl → /en), so it reliably detects all navigations.
   useEffect(() => {
-    if (!pendingRef.current) return
+    const isPending = pendingRef.current || pendingNavigation
+    if (!isPending) return
     pendingRef.current = false
+    pendingNavigation = false
 
     const svgPath = pathRef.current
 
@@ -118,7 +124,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
       },
     })
 
-    tl.set(svgPath, { drawSVG: '0% 100%' })
+    tl.set(svgPath, { drawSVG: '0% 100%', strokeWidth: '30%' })
 
     tl.to(svgPath, {
       duration: 1.25,
@@ -136,7 +142,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
         '< 0.75',
       )
     }
-  }, [fullPathname])
+  }, [fullPathname, locale])
 
   return (
     <TransitionContext.Provider value={{ navigate, isAnimating }}>

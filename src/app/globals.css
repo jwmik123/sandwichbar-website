@@ -1,26 +1,129 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-cream: #FDF4E5;
+  --color-plum: #4D343F;
+  --color-dark: #382628;
+  --color-muted: #685D5E;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-cream: var(--color-cream);
+  --color-plum: var(--color-plum);
+  --color-dark: var(--color-dark);
+  --color-muted: var(--color-muted);
+  --font-sans: "Poppins", sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-cream);
+  color: var(--color-dark);
+  font-family: var(--font-sans);
+}
+
+.hero-clip {
+  clip-path: polygon(67% 92%,
+    41% 94%,
+    0% 100%,
+    0% 0%,
+    100% 0%,
+    100% 97%,
+    88% 93%);
+}
+
+/* @media (min-width: 1200px) {
+  .hero-clip {
+    clip-path: polygon(69% 80%, 51% 83%, 0% 100%, 0% 0%, 100% 0%, 100% 97%, 87% 83%);
+  }
+} */
+
+/* Bubble arrow button */
+.btn-group {
+  grid-column-gap: 3em;
+  grid-row-gap: 3em;
+  justify-content: center;
+  font-size: 2em;
+  display: flex;
+}
+
+.btn-bubble-arrow {
+  border-radius: 10em;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  text-decoration: none;
+  display: flex;
+  position: relative;
+}
+
+.btn-bubble-arrow__arrow {
+  color: var(--color-cream);
+  background-color: var(--color-plum);
+  border-radius: 10em;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  width: 3.75em;
+  height: 3.75em;
+  display: flex;
+  position: relative;
+  transition: transform 0.735s cubic-bezier(0.625, 0.05, 0, 1);
+  transform: scale(0) rotate(0.001deg);
+  transform-origin: left;
+}
+
+.btn-bubble-arrow__arrow.is--duplicate {
+  z-index: 2;
+  background-color: var(--color-cream);
+  color: var(--color-plum);
+  position: absolute;
+  right: 0;
+  transform: scale(1) rotate(0.001deg);
+  transform-origin: right;
+}
+
+.btn-bubble-arrow__arrow.is--duplicate .btn-bubble-arrow__arrow-svg polyline,
+.btn-bubble-arrow__arrow.is--duplicate .btn-bubble-arrow__arrow-svg line {
+  stroke: var(--color-plum);
+}
+
+.btn-bubble-arrow__arrow-svg {
+  width: 40%;
+  transition: transform 0.735s cubic-bezier(0.625, 0.05, 0, 1);
+  transform: rotate(0.001deg);
+}
+
+.btn-bubble-arrow__content {
+  color: var(--color-cream);
+  background-color: color-mix(in srgb, var(--color-dark) 60%, transparent);
+  border-radius: 10em;
+  justify-content: center;
+  align-items: center;
+  height: 3.75em;
+  padding-left: 2em;
+  padding-right: 2em;
+  display: flex;
+  position: relative;
+  transition: transform 0.735s cubic-bezier(0.625, 0.05, 0, 1);
+  transform: translateX(-3.75em) rotate(0.001deg);
+}
+
+.btn-bubble-arrow__content-text {
+  line-height: 1;
+}
+
+.btn-bubble-arrow:hover .btn-bubble-arrow__content {
+  transform: translateX(0em) rotate(0.001deg);
+}
+
+.btn-bubble-arrow:hover .btn-bubble-arrow__arrow-svg {
+  transform: rotate(-45deg);
+}
+
+.btn-bubble-arrow:hover .btn-bubble-arrow__arrow {
+  transform: scale(1) rotate(0.001deg);
+}
+
+.btn-bubble-arrow:hover .btn-bubble-arrow__arrow.is--duplicate {
+  transform: scale(0) rotate(0.001deg);
 }

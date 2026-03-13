@@ -157,7 +157,7 @@ export function MatterBalls() {
         World.clear(engine.world, false)
         Engine.clear(engine)
         render.canvas?.remove()
-        ;(render as Record<string, unknown>).textures = {}
+        ;(render as unknown as Record<string, unknown>).textures = {}
       }
     }
 

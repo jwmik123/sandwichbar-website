@@ -11,6 +11,7 @@ import {
 } from 'react'
 import { useLocale } from 'next-intl'
 import { useRouter, usePathname } from '@/i18n/navigation'
+import { usePathname as useFullPathname } from 'next/navigation'
 import gsap from 'gsap'
 import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin'
 
@@ -32,13 +33,13 @@ export function usePageTransition() {
 
 export function PageTransition({ children }: { children: ReactNode }) {
   const router = useRouter()
-  const pathname = usePathname()
+  const pathname = usePathname() // locale-stripped, for same-page guard
+  const fullPathname = useFullPathname() // full URL including locale prefix
   const locale = useLocale()
   const pathRef = useRef<SVGPathElement>(null)
   const animatingRef = useRef(false)
   const [isAnimating, setIsAnimating] = useState(false)
-  const pendingPathRef = useRef<string | null>(null)
-  const pendingLocaleRef = useRef<string | null>(null)
+  const pendingRef = useRef(false)
 
   const reducedMotion =
     typeof window !== 'undefined' &&
@@ -61,11 +62,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
         return
       }
 
-      if (targetLocale) {
-        pendingLocaleRef.current = targetLocale
-      } else {
-        pendingPathRef.current = href
-      }
+      pendingRef.current = true
 
       // --- Leave animation ---
       const tl = gsap.timeline({
@@ -99,13 +96,12 @@ export function PageTransition({ children }: { children: ReactNode }) {
   )
 
   // --- Enter animation after route change ---
+  // fullPathname changes for both path changes (/nl/about → /nl/menu)
+  // and locale switches (/nl → /en), so it reliably detects all navigations.
   useEffect(() => {
-    const pathMatch = pendingPathRef.current !== null && pathname === pendingPathRef.current
-    const localeMatch = pendingLocaleRef.current !== null && locale === pendingLocaleRef.current
-    if (!pathMatch && !localeMatch) return
+    if (!pendingRef.current) return
+    pendingRef.current = false
 
-    pendingPathRef.current = null
-    pendingLocaleRef.current = null
     const svgPath = pathRef.current
 
     if (!svgPath) {
@@ -140,7 +136,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
         '< 0.75',
       )
     }
-  }, [pathname, locale])
+  }, [fullPathname])
 
   return (
     <TransitionContext.Provider value={{ navigate, isAnimating }}>

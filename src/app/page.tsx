@@ -1,3 +1,4 @@
+import { getLocale } from 'next-intl/server'
 import { sanityFetch } from '@/sanity/lib/live'
 import {
   HERO_QUERY,
@@ -20,14 +21,8 @@ import { LocationSection } from './components/location-section'
 import { Footer } from './components/footer'
 
 export default async function Home() {
-  const params = {
-    heroId: '',
-    sloganId: '',
-    socialMediaId: '',
-    menuSectionId: '',
-    testimonialsId: '',
-    contactInfoId: '',
-  }
+  const locale = await getLocale()
+  const params = { locale }
 
   const [hero, slogan, socialMedia, menu, testimonials, contact] = await Promise.all([
     sanityFetch({ query: HERO_QUERY, params }),

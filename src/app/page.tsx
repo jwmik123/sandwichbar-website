@@ -40,7 +40,7 @@ export default async function Home() {
       <AboutSection />
       <ImageSection />
       <SandwichSlider />
-      <SocialMediaSection data={socialMedia.data} />
+      <SocialMediaSection videos={socialMedia.data} />
       <MenuSection data={menu.data} />
       <TestimonialsSection data={testimonials.data} />
       <LocationSection />

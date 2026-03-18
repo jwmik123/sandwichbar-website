@@ -34,7 +34,7 @@ export function PdfViewerContent({ url }: { url: string }) {
         canvas.style.width = '100%'
         canvas.style.display = 'block'
 
-        container.appendChild(canvas)
+        container!.appendChild(canvas)
 
         await page.render({ canvasContext: canvas.getContext('2d')!, viewport }).promise
       }

@@ -137,7 +137,7 @@ export function Navigation() {
 
         {/* Nav links — right */}
         <div className="pointer-events-auto flex flex-col md:flex-row items-end md:items-center gap-3">
-          {([{ href: '/about', label: t('about') }, { href: '/menu', label: t('menu') }, { href: '/catering', label: t('catering') }] as const).map((link) => (
+          {([{ href: '/menu', label: t('menu') }, { href: '/catering', label: t('catering') }] as const).map((link) => (
             <MagneticLink key={link.href} href={link.href}>
               {link.label}
             </MagneticLink>

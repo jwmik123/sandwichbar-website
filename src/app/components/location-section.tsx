@@ -175,13 +175,13 @@ const SCHEDULE_NASSAUKADE: DayEntry[] = [
 ]
 
 const SCHEDULE: DayEntry[] = [
-  { day: 'monday',    open: '10:00', close: '18:00' },
-  { day: 'tuesday',   open: '09:00', close: '18:00' },
-  { day: 'wednesday', open: '09:00', close: '12:00' },
-  { day: 'thursday',  open: '09:00', close: '18:00' },
-  { day: 'friday',    open: '09:00', close: '22:00' },
-  { day: 'saturday',  open: '18:00', close: '07:00' },
-  { day: 'sunday',    open: null,    close: null     },
+  { day: 'monday', open: '09:00', close: '17:00' },
+  { day: 'tuesday', open: '09:00', close: '17:00' },
+  { day: 'wednesday', open: '09:00', close: '17:00' },
+  { day: 'thursday', open: '09:00', close: '17:00' },
+  { day: 'friday', open: '09:00', close: '17:00' },
+  { day: 'saturday', open: '09:00', close: '17:30' },
+  { day: 'sunday', open: '09:00', close: '17:30' },
 ]
 
 const LOCATIONS: LocationData[] = [

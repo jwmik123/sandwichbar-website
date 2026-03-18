@@ -18,7 +18,7 @@ export function AboutSection() {
 
         <div className="w-full flex justify-center">
           <Image
-            src="/images/tsb-location.jpg"
+            src="/images/sandwichbetter.webp"
             alt="The Sandwich Bar locatie"
             width={900}
             height={600}

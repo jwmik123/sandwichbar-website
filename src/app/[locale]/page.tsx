@@ -6,8 +6,10 @@ import {
   MENU_SECTION_QUERY,
   TESTIMONIALS_QUERY,
   CONTACT_INFO_QUERY,
+  SOCIAL_MEDIA_QUERY,
 } from '@/sanity/lib/queries'
 import { getLatestTikToks } from '@/lib/tiktok'
+import type { VideoItem } from '../components/social-media-section'
 import { HeroSection } from '../components/hero-section'
 import { SloganSection } from '../components/slogan-section'
 import { SocialMediaSection } from '../components/social-media-section'
@@ -26,14 +28,23 @@ export default async function Home() {
 
   const params = { locale }
 
-  const [hero, slogan, , testimonials, contact, tiktokVideos] = await Promise.all([
+  const [hero, slogan, , testimonials, contact, tiktokVideos, socialMediaData] = await Promise.all([
     sanityFetch({ query: HERO_QUERY, params }),
     sanityFetch({ query: SLOGAN_QUERY, params }),
     sanityFetch({ query: MENU_SECTION_QUERY, params }),
     sanityFetch({ query: TESTIMONIALS_QUERY, params }),
     sanityFetch({ query: CONTACT_INFO_QUERY, params }),
     getLatestTikToks().catch(() => []),
+    sanityFetch({ query: SOCIAL_MEDIA_QUERY, params }),
   ])
+
+  const videos: VideoItem[] = tiktokVideos.length
+    ? tiktokVideos.map((v) => ({ id: v.id, title: v.title, cover_image_url: v.cover_image_url, share_url: v.share_url }))
+    : (socialMediaData.data?.videos ?? []).map((v: { _key: string; title?: string; embedUrl?: string }) => ({
+        id: v._key,
+        title: v.title,
+        embedUrl: v.embedUrl,
+      }))
 
   return (
     <>
@@ -43,7 +54,7 @@ export default async function Home() {
       <ImageSection />
       <CateringSection />
       <SandwichSlider />
-      <SocialMediaSection videos={tiktokVideos} />
+      <SocialMediaSection videos={videos} />
       {/* <MenuSection data={menu.data} /> */}
       <TestimonialsSection data={testimonials.data} />
       <LocationSection />

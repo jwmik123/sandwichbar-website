@@ -40,6 +40,7 @@ export function SandwichSlider() {
   const pathRef = useRef<SVGPathElement>(null)
   const draggableRef = useRef<Draggable[]>([])
   const [current, setCurrent] = useState(0)
+  const currentRef = useRef(0)
   const [slideWidth, setSlideWidth] = useState(0)
 
   const maxIndex = SANDWICHES.length - 1
@@ -56,6 +57,7 @@ export function SandwichSlider() {
     if (slideWidth === 0) return
     const clamped = Math.max(0, Math.min(index, maxIndex))
     setCurrent(clamped)
+    currentRef.current = clamped
     gsap.to(trackRef.current, {
       x: -clamped * slideWidth,
       duration: 0.7,
@@ -85,14 +87,25 @@ export function SandwichSlider() {
 
     draggableRef.current.forEach((d) => d.kill())
 
+    let startX = 0
+    const SWIPE_THRESHOLD = slideWidth * 0.15
+
     draggableRef.current = Draggable.create(trackRef.current, {
       type: 'x',
       edgeResistance: 0.85,
       bounds: { minX: -maxIndex * slideWidth, maxX: 0 },
       inertia: false,
+      onDragStart() {
+        startX = gsap.getProperty(trackRef.current, 'x') as number
+      },
       onDragEnd() {
         const x = gsap.getProperty(trackRef.current, 'x') as number
-        animateTo(Math.round(-x / slideWidth))
+        const delta = x - startX
+        if (Math.abs(delta) >= SWIPE_THRESHOLD) {
+          animateTo(currentRef.current + (delta < 0 ? 1 : -1))
+        } else {
+          animateTo(currentRef.current)
+        }
       },
     })
 
@@ -102,7 +115,7 @@ export function SandwichSlider() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full min-h-screen overflow-hidden bg-cream flex flex-col py-16"
+      className="relative w-full min-h-[70vh] md:min-h-screen overflow-hidden bg-cream flex flex-col py-16"
     >
       {/* Background SVG path — drawn on scroll */}
       <svg
@@ -124,7 +137,7 @@ export function SandwichSlider() {
 
       {/* Header */}
       <div className="max-w-7xl mx-auto px-6 w-full">
-        <div className="flex items-end justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
           <h2 className="text-4xl md:text-5xl font-bold text-plum uppercase leading-tight">
             {t('titlePrefix')} <br /> <span className="font-tomatoes lowercase text-6xl">{t('titleAccent')}</span>
           </h2>
@@ -189,7 +202,7 @@ export function SandwichSlider() {
       </div>
 
       {/* Dot indicators */}
-      <div className="flex items-center justify-center gap-2 mt-10">
+      <div className="flex items-center justify-center gap-2 mt-4 md:mt-10">
         {SANDWICHES.map((_, i) => (
           <button
             key={i}

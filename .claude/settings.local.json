@@ -3,7 +3,8 @@
     "allow": [
       "Bash(npm install:*)",
       "mcp__Sanity__query_documents",
-      "mcp__Sanity__publish_documents"
+      "mcp__Sanity__publish_documents",
+      "WebSearch"
     ]
   }
 }

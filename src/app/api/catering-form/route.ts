@@ -16,7 +16,7 @@ export async function POST(request: Request) {
       from: 'The Sandwich Bar <noreply@thesandwichbar.nl>',
       to: 'orders@thesandwichbar.nl',
       replyTo: email,
-      subject: `Nieuwe catering aanvraag: ${companyName}`,
+      subject: `Nieuwe proeflunch box aanvraag: ${companyName}`,
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 24px;">
           <h2 style="color: #4D343F; margin-bottom: 24px;">Nieuwe gratis proeflunch box aanvraag</h2>

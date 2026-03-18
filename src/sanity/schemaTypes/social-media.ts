@@ -28,14 +28,11 @@ export const socialMedia = defineType({
               validation: (rule) => rule.required(),
             }),
             defineField({
-              name: 'url',
-              title: 'URL',
+              name: 'embedUrl',
+              title: 'TikTok Video URL',
+              description: 'Paste the TikTok video URL (e.g. https://www.tiktok.com/@user/video/123...)',
               type: 'url',
-            }),
-            defineField({
-              name: 'videoFile',
-              title: 'Video File',
-              type: 'file',
+              validation: (rule) => rule.required(),
             }),
           ],
         }),

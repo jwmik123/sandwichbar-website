@@ -18,8 +18,28 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: 'The Sandwich Bar Catering',
-  description: 'The best sandwiches in town',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://thesandwichbar.nl'),
+  title: 'The Sandwich Bar - Belegde broodjes en Catering',
+  description: 'At The Sandwich Bar, we believe in quality and variety. Our menus offer a wide range of flavors and ingredients, and we are happy to accommodate dietary preferences, including gluten-free, vegetarian, and vegan options.',
+  openGraph: {
+    title: 'The Sandwich Bar - Belegde broodjes en Catering',
+    description: 'At The Sandwich Bar, we believe in quality and variety. Our menus offer a wide range of flavors and ingredients, and we are happy to accommodate dietary preferences, including gluten-free, vegetarian, and vegan options.',
+    images: [
+      {
+        url: '/images/sandwichbetter.webp',
+        width: 1200,
+        height: 630,
+        alt: 'The Sandwich Bar',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'The Sandwich Bar - Belegde broodjes en Catering',
+    description: 'At The Sandwich Bar, we believe in quality and variety. Our menus offer a wide range of flavors and ingredients, and we are happy to accommodate dietary preferences, including gluten-free, vegetarian, and vegan options.',
+    images: ['/images/sandwichbetter.webp'],
+  },
 }
 
 export function generateStaticParams() {

@@ -132,7 +132,7 @@ export function LogoWall({ logos }: LogoWallProps) {
         autoAlpha: 1,
         duration: DURATION,
         ease: 'expo.inOut',
-        onComplete: () => gsap.set(incoming, { clearProps: 'transform,opacity,visibility' }),
+        onComplete: () => { gsap.set(incoming, { clearProps: 'transform,opacity,visibility' }) },
       })
     }
 

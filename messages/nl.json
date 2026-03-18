@@ -23,7 +23,8 @@
     "openingHours": "Openingstijden"
   },
   "menuSection": {
-    "title": "Ons Menu"
+    "title": "Ons Menu",
+    "downloadPdf": "Menu downloaden"
   },
   "testimonials": {
     "title": "Wat mensen zeggen"
@@ -52,6 +53,37 @@
     "soundOff": "Geluid uit",
     "pause": "Pauzeren",
     "play": "Afspelen"
+  },
+  "catering": {
+    "label": "Catering",
+    "title": "Op zoek naar de beste sandwich catering in Amsterdam?",
+    "p1": "The Sandwich Bar staat voor je klaar! Ons toegewijde team van professionals verzorgt met plezier jouw kantoorvergadering, bedrijfsevent, verjaardag, bruiloft of elke andere gelegenheid met heerlijke, vers bereide sandwiches. We bezorgen onze lunchcatering door heel Amsterdam (en op aanvraag ook in omliggende gebieden).",
+    "p2": "Bij The Sandwich Bar geloven we in kwaliteit en variatie. Ons menu biedt een breed scala aan smaken en ingrediënten, en we houden graag rekening met dieetwensen – waaronder glutenvrije, vegetarische en veganistische opties.",
+    "orderNow": "Bestel direct",
+    "freeTestLunch": "Bestel een gratis test lunch"
+  },
+  "cateringPage": {
+    "heroLabel": "Catering",
+    "heroTitle": "Catering zoals het hoort te zijn, vers, flexibel, en altijd op tijd",
+    "heroSubtitle": "The Sandwich Bar catering levert rijk belegde broodjes aan jouw team – zonder poespas én budgetvriendelijk. Ontdek het zelf met een gratis proeflunch box: 5 vers gemaakte broodjes, direct op kantoor bezorgd. Zin om te proeven?",
+    "heroContact": "Bij vragen over onze catering stuur een mail naar orders@thesandwichbar.nl of bel +31 6 15657447",
+    "logosTitle": "Zij gingen je al voor",
+    "formTitle": "Bestel je gratis proeflunch box",
+    "formSubtitle": "Vul het formulier in en wij bezorgen 5 vers gemaakte broodjes op jouw kantoor.",
+    "formNote": "Het is niet mogelijk om een test box voor vandaag te bestellen — minimaal één dag van te voren bestellen.",
+    "companyName": "Bedrijfsnaam",
+    "yourName": "Jouw naam",
+    "email": "Email",
+    "phone": "Telefoon",
+    "deliveryDate": "Bezorgdatum",
+    "deliveryTime": "Bezorgtijd",
+    "address": "Adres",
+    "postalCode": "Postcode",
+    "submit": "Aanvraag versturen",
+    "submitting": "Versturen...",
+    "successTitle": "Aanvraag ontvangen!",
+    "successMessage": "We nemen snel contact met je op om je gratis proeflunch box te bevestigen.",
+    "errorMessage": "Er is iets misgegaan. Probeer het opnieuw of stuur een mail naar orders@thesandwichbar.nl"
   },
   "location": {
     "titlePrefix": "Onze",

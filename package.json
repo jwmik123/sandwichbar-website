@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
+    "@react-pdf-viewer/core": "^3.12.0",
+    "@react-pdf-viewer/default-layout": "^3.12.0",
     "@sanity/document-internationalization": "^6.0.1",
     "@sanity/image-url": "^2.0.3",
     "@sanity/vision": "^5.14.1",
@@ -20,9 +22,12 @@
     "next-intl": "^4.8.3",
     "next-sanity": "^12.1.1",
     "next-view-transitions": "^0.3.5",
+    "pdfjs-dist": "^3.11.174",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "sanity": "^5.14.1"
+    "resend": "^6.9.4",
+    "sanity": "^5.14.1",
+    "styled-components": "^6.3.11"
   },
   "devDependencies": {
     "@sanity/icons": "^3.7.4",

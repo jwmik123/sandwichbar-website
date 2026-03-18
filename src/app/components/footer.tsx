@@ -196,8 +196,8 @@ export function Footer({ openingHours }: FooterProps) {
               <p className="mb-3 text-xs uppercase tracking-widest text-cream/40">{t('followUs')}</p>
               <div className="flex items-center gap-3">
                 {[
-                  { href: 'https://instagram.com/thesandwichbar', label: 'Instagram', Icon: InstagramIcon },
-                  { href: 'https://tiktok.com/@thesandwichbar', label: 'TikTok', Icon: TikTokIcon },
+                  { href: 'https://instagram.com/thesandwichbarams', label: 'Instagram', Icon: InstagramIcon },
+                  { href: 'http://tiktok.com/@thesandwichbaramsterdam', label: 'TikTok', Icon: TikTokIcon },
                 ].map(({ href, label, Icon }) => (
                   <a
                     key={label}

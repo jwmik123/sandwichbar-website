@@ -9,7 +9,7 @@ import { usePathname } from '@/i18n/navigation'
 const socialLinks = [
   {
     label: 'Instagram',
-    href: 'https://instagram.com/thesandwichbar',
+    href: 'https://instagram.com/thesandwichbarams',
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
@@ -20,7 +20,7 @@ const socialLinks = [
   },
   {
     label: 'TikTok',
-    href: 'https://tiktok.com/@thesandwichbar',
+    href: 'http://tiktok.com/@thesandwichbaramsterdam',
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
@@ -66,10 +66,10 @@ export function Navigation() {
               {link.icon}
             </a>
           ))}
-          <div className="flex gap-1.5 text-xs text-cream/50 pt-1">
-            <TransitionLink href={pathname} locale="nl" className={`transition-colors duration-200 hover:text-cream ${locale === 'nl' ? 'text-cream font-semibold' : ''}`}>NL</TransitionLink>
+          <div className="flex items-center text-xs text-cream/50 pt-1">
+            <TransitionLink href={pathname} locale="nl" className={`px-2 py-1 transition-colors duration-200 hover:text-cream ${locale === 'nl' ? 'text-cream font-semibold' : ''}`}>NL</TransitionLink>
             <span>/</span>
-            <TransitionLink href={pathname} locale="en" className={`transition-colors duration-200 hover:text-cream ${locale === 'en' ? 'text-cream font-semibold' : ''}`}>EN</TransitionLink>
+            <TransitionLink href={pathname} locale="en" className={`px-2 py-1 transition-colors duration-200 hover:text-cream ${locale === 'en' ? 'text-cream font-semibold' : ''}`}>EN</TransitionLink>
           </div>
         </div>
 

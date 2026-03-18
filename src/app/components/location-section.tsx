@@ -164,6 +164,16 @@ type LocationData = {
 }
 
 // TODO: Replace placeholder names, addresses and mapsUrl with real data
+const SCHEDULE_NASSAUKADE: DayEntry[] = [
+  { day: 'monday',    open: '09:00', close: '17:00' },
+  { day: 'tuesday',   open: '09:00', close: '17:00' },
+  { day: 'wednesday', open: '09:00', close: '17:00' },
+  { day: 'thursday',  open: '09:00', close: '17:00' },
+  { day: 'friday',    open: '09:00', close: '17:00' },
+  { day: 'saturday',  open: '09:00', close: '17:30' },
+  { day: 'sunday',    open: '09:00', close: '17:30' },
+]
+
 const SCHEDULE: DayEntry[] = [
   { day: 'monday',    open: '10:00', close: '18:00' },
   { day: 'tuesday',   open: '09:00', close: '18:00' },
@@ -177,11 +187,11 @@ const SCHEDULE: DayEntry[] = [
 const LOCATIONS: LocationData[] = [
   {
     name: 'The Sandwich Bar',
-    neighborhood: 'Location one',
-    address: 'Straatnaam 1, Amsterdam',
-    mapsUrl: 'https://maps.google.com',
+    neighborhood: 'Nassaukade',
+    address: 'Nassaukade 378H, Amsterdam',
+    mapsUrl: 'https://maps.app.goo.gl/CKT2jVSsXiU84Gni9',
     image: '/images/tsb1-location.webp',
-    schedule: SCHEDULE,
+    schedule: SCHEDULE_NASSAUKADE,
   },
   {
     name: 'The Sandwich Bar',

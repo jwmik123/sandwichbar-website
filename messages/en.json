@@ -23,7 +23,8 @@
     "openingHours": "Opening Hours"
   },
   "menuSection": {
-    "title": "Our Menu"
+    "title": "Our Menu",
+    "downloadPdf": "Download menu"
   },
   "testimonials": {
     "title": "What People Say"
@@ -52,6 +53,37 @@
     "soundOff": "Sound off",
     "pause": "Pause",
     "play": "Play"
+  },
+  "catering": {
+    "label": "Catering",
+    "title": "Looking for the best sandwich catering in Amsterdam?",
+    "p1": "The Sandwich Bar is here for you! Our dedicated team of professionals is happy to take care of your office meeting, corporate event, birthday, wedding, or any other occasion with delicious, freshly prepared sandwiches. We deliver our lunch catering throughout Amsterdam (and on request in surrounding areas).",
+    "p2": "At The Sandwich Bar we believe in quality and variety. Our menu offers a wide range of flavours and ingredients, and we are happy to accommodate dietary requirements — including gluten-free, vegetarian, and vegan options.",
+    "orderNow": "Order now",
+    "freeTestLunch": "Order a free test lunch"
+  },
+  "cateringPage": {
+    "heroLabel": "Catering",
+    "heroTitle": "Catering done right — fresh, flexible, and always on time",
+    "heroSubtitle": "The Sandwich Bar catering delivers richly topped sandwiches to your team — no fuss and budget-friendly. Discover it yourself with a free trial lunch box: 5 freshly made sandwiches, delivered straight to your office. Ready to taste?",
+    "heroContact": "Questions about our catering? Email orders@thesandwichbar.nl or call +31 6 15657447",
+    "logosTitle": "Trusted by great companies",
+    "formTitle": "Order your free trial lunch box",
+    "formSubtitle": "Fill in the form below and we'll deliver 5 freshly made sandwiches to your office.",
+    "formNote": "It is not possible to order a trial box for today — minimum one day in advance.",
+    "companyName": "Company name",
+    "yourName": "Your name",
+    "email": "Email",
+    "phone": "Phone",
+    "deliveryDate": "Delivery date",
+    "deliveryTime": "Delivery time",
+    "address": "Address",
+    "postalCode": "Postal code",
+    "submit": "Submit request",
+    "submitting": "Sending...",
+    "successTitle": "Request received!",
+    "successMessage": "We'll be in touch soon to confirm your free trial lunch box.",
+    "errorMessage": "Something went wrong. Please try again or email orders@thesandwichbar.nl"
   },
   "location": {
     "titlePrefix": "Our",

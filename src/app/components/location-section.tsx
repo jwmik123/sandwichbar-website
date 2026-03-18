@@ -195,9 +195,9 @@ const LOCATIONS: LocationData[] = [
   },
   {
     name: 'The Sandwich Bar',
-    neighborhood: 'Location two',
-    address: 'Straatnaam 2, Amsterdam',
-    mapsUrl: 'https://maps.google.com',
+    neighborhood: 'Amstelveenseweg',
+    address: 'Amstelveenseweg 156, Amsterdam',
+    mapsUrl: 'https://maps.app.goo.gl/mBG7LVu3xHNkC4DNA',
     image: '/images/tsb2-location.webp',
     schedule: SCHEDULE,
   },

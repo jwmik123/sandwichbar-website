@@ -1,10 +1,11 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef, useCallback } from 'react'
 import Image from 'next/image'
 import { TransitionLink } from './transition-link'
 import { useTranslations, useLocale } from 'next-intl'
 import { usePathname } from '@/i18n/navigation'
+import gsap from 'gsap'
 
 const socialLinks = [
   {
@@ -28,6 +29,47 @@ const socialLinks = [
     ),
   },
 ]
+
+function MagneticLink({ href, children }: { href: string; children: React.ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null)
+
+  const onMouseMove = useCallback((e: MouseEvent) => {
+    const el = ref.current
+    if (!el) return
+    const rect = el.getBoundingClientRect()
+    const cx = rect.left + rect.width / 2
+    const cy = rect.top + rect.height / 2
+    const dx = e.clientX - cx
+    const dy = e.clientY - cy
+    gsap.to(el, { x: dx * 0.35, y: dy * 0.35, duration: 0.4, ease: 'power3.out' })
+  }, [])
+
+  const onMouseLeave = useCallback(() => {
+    gsap.to(ref.current, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.4)' })
+  }, [])
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    el.addEventListener('mousemove', onMouseMove)
+    el.addEventListener('mouseleave', onMouseLeave)
+    return () => {
+      el.removeEventListener('mousemove', onMouseMove)
+      el.removeEventListener('mouseleave', onMouseLeave)
+    }
+  }, [onMouseMove, onMouseLeave])
+
+  return (
+    <div ref={ref} style={{ display: 'inline-block' }}>
+      <TransitionLink
+        href={href}
+        className="rounded-full border border-cream bg-cream px-5 py-2 text-sm font-semibold text-plum backdrop-blur-sm transition-colors duration-200 hover:bg-plum hover:text-cream hover:border-plum inline-block"
+      >
+        {children}
+      </TransitionLink>
+    </div>
+  )
+}
 
 export function Navigation() {
   const t = useTranslations('nav')
@@ -94,15 +136,11 @@ export function Navigation() {
         </div>
 
         {/* Nav links — right */}
-        <div className="pointer-events-auto flex flex-col items-end gap-3">
-          {([{ href: '/about', label: t('about') }, { href: '/menu', label: t('menu') }] as const).map((link) => (
-            <TransitionLink
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-cream/70 transition-colors duration-200 hover:text-cream"
-            >
+        <div className="pointer-events-auto flex flex-col md:flex-row items-end md:items-center gap-3">
+          {([{ href: '/about', label: t('about') }, { href: '/menu', label: t('menu') }, { href: '/catering', label: t('catering') }] as const).map((link) => (
+            <MagneticLink key={link.href} href={link.href}>
               {link.label}
-            </TransitionLink>
+            </MagneticLink>
           ))}
         </div>
       </div>

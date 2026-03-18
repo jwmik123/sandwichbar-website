@@ -8,6 +8,7 @@ import { draftMode } from 'next/headers'
 import { Navigation } from '../components/navigation'
 import { PageTransition } from '../components/page-transition'
 import { LenisProvider } from '../components/lenis-provider'
+import { IntroAnimation } from '../components/intro-animation'
 import { routing } from '@/i18n/routing'
 import '../globals.css'
 
@@ -38,6 +39,7 @@ export default async function LocaleLayout({
   return (
     <NextIntlClientProvider messages={messages}>
       <div className={`${poppins.className} antialiased`}>
+        <IntroAnimation />
         <LenisProvider>
           <PageTransition>
             <Navigation />

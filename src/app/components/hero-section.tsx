@@ -45,6 +45,7 @@ export function HeroSection({ data }: { data: HeroData | null }) {
       {/* Title — centered */}
       <div className="absolute top-[38%] left-[50%] z-[20] flex items-center justify-center px-6 -translate-x-1/2 -translate-y-1/2">
         <h1
+          data-hero-title
           className="text-center text-7xl font-bold tracking-tighter text-cream uppercase blur-[1px] md:text-9xl leading-none"
           data-sanity={attr.scope('title').toString()}
         >
@@ -56,6 +57,7 @@ export function HeroSection({ data }: { data: HeroData | null }) {
       <div className="absolute rounded-xl p-10 bottom-[35vh] right-10 z-[20] flex flex-col items-end gap-4 text-right">
         {data.subtitle && (
           <p
+            data-hero-subtitle
             className="max-w-xs text-sm text-cream md:text-base"
             data-sanity={attr.scope('subtitle').toString()}
           >
@@ -64,6 +66,7 @@ export function HeroSection({ data }: { data: HeroData | null }) {
         )}
         {data.buttonText && (
           <TransitionLink
+            data-hero-button
             href={data.buttonLink || '/menu'}
             className="btn-bubble-arrow"
             data-sanity={attr.scope('buttonText').toString()}

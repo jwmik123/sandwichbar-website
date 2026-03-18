@@ -7,6 +7,10 @@
   font-style: normal;
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
 :root {
   --color-cream: #FDF4E5;
   --color-plum: #4D343F;
@@ -206,6 +210,7 @@ a, button, [role="button"], label[for] {
     display: none;
   }
 }
+
 
 /* Matter.js canvas gimmick — fills the footer as a background layer */
 .canvas-matter {

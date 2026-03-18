@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { InertiaPlugin } from 'gsap/InertiaPlugin'
@@ -36,23 +36,20 @@ function VideoCard({ video }: { video: VideoItem }) {
           data-momentum-hover-target=""
           className="group relative w-full overflow-hidden rounded-xl text-cream will-change-transform"
         >
-          {/* 9:16 aspect-ratio spacer */}
-          <div className="pt-[177.78%]" />
+          {/* 9:16 aspect-ratio spacer — only for image fallback cards */}
+          {!videoId && <div className="pt-[177.78%]" />}
 
-          {videoId && process.env.NODE_ENV === 'production' ? (
-            /* TikTok embed iframe — oversized height clips description via parent overflow-hidden */
-            <iframe
-              src={`https://www.tiktok.com/embed/v2/${videoId}`}
-              className="absolute inset-0 w-full"
-              style={{ height: '115%', overflow: 'hidden' }}
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture; accelerometer; gyroscope"
-              allowFullScreen
-            />
-          ) : videoId ? (
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-plum/20 px-4 text-center">
-              <TikTokIcon className="h-10 w-10 text-cream/40" />
-              <p className="text-xs text-cream/50">TikTok embed (localhost)</p>
-              {video.title && <p className="text-sm font-semibold text-cream/70">{video.title}</p>}
+          {videoId ? (
+            /* Clipping wrapper — controls visible crop of the TikTok embed */
+            <div className="overflow-hidden" style={{ aspectRatio: '9/16' }}>
+              <blockquote
+                className="tiktok-embed"
+                cite={`https://www.tiktok.com/@thesandwichbaramsterdam/video/${videoId}`}
+                data-video-id={videoId}
+                style={{ maxWidth: '100%', minWidth: '0px', margin: 0 }}
+              >
+                <section />
+              </blockquote>
             </div>
           ) : video.cover_image_url ? (
             // eslint-disable-next-line @next/next/no-img-element
@@ -102,6 +99,16 @@ function VideoCard({ video }: { video: VideoItem }) {
 export function SocialMediaSection({ videos }: { videos: VideoItem[] }) {
   const t = useTranslations('socialMedia')
   const sectionRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const script = document.createElement('script')
+    script.src = 'https://www.tiktok.com/embed.js'
+    script.async = true
+    document.body.appendChild(script)
+    return () => {
+      document.body.removeChild(script)
+    }
+  }, [])
 
   useGSAP(
     () => {
@@ -183,7 +190,7 @@ export function SocialMediaSection({ videos }: { videos: VideoItem[] }) {
           {t('title')} <span className="font-tomatoes lowercase">TikTok</span>
         </h2>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
           {videos.map((video) => (
             <VideoCard key={video.id} video={video} />
           ))}

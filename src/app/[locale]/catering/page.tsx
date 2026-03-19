@@ -5,10 +5,12 @@ import { LogoWall } from '../../components/logo-wall'
 import { CateringForm } from '../../components/catering-form'
 import { HeroImageSlider } from '../../components/hero-image-slider'
 import { Footer } from '../../components/footer'
+import { TransitionLink } from '../../components/transition-link'
 
 export default async function CateringPage() {
   const locale = await getLocale()
   const t = await getTranslations('cateringPage')
+  const c = await getTranslations('catering')
 
   const [logos, contact] = await Promise.all([
     sanityFetch({ query: CATERING_LOGOS_QUERY }),
@@ -30,12 +32,20 @@ export default async function CateringPage() {
               <span className="mb-4 inline-block text-sm font-semibold uppercase tracking-widest text-cream/50">
                 {t('heroLabel')}
               </span>
-              <h1 className="mb-6 text-5xl font-bold uppercase leading-tight tracking-tight text-cream md:text-6xl lg:text-7xl">
+              <h1 className="mb-6 text-5xl font-bold uppercase leading-tightest tracking-tight text-cream md:text-6xl lg:text-7xl">
                 {t('heroTitle')}
               </h1>
               <p className="mb-8 max-w-lg text-lg leading-relaxed text-cream/75">
                 {t('heroSubtitle')}
               </p>
+               <div className="flex flex-wrap mb-8">
+                  <TransitionLink
+                    href="https://catering.thesandwichbar.nl"
+                    className="rounded-full border border-cream /40 bg-cream/10 px-7 py-3 text-sm font-semibold text-cream transition-colors duration-200 hover:bg-cream hover:text-muted"
+                  >
+                    {c('orderNow')}
+                  </TransitionLink>
+                </div>
               <p className="text-sm text-cream/40">
                 {t('heroContact')}
               </p>

@@ -142,7 +142,7 @@ export function Footer({ openingHours }: FooterProps) {
             {([
               { href: '/', label: t('home') },
               { href: '/menu', label: t('menu') },
-              { href: '/about', label: t('about') },
+              { href: '/catering', label: t('catering') },
               { href: '/privacy', label: t('privacy') },
               { href: '/terms', label: t('legal') },
             ] as const).map(({ href, label }) => (

@@ -1,21 +1,14 @@
 import Image from 'next/image'
-import { useTranslations } from 'next-intl'
+import { PortableText } from '@portabletext/react'
 
-export function AboutSection() {
-  const t = useTranslations('aboutSection')
+type AboutSectionData = {
+  body?: unknown[] | null
+}
 
+export function AboutSection({ data }: { data?: AboutSectionData | null }) {
   return (
     <section className="bg-cream pb-20 px-6 relative overflow-hidden">
       <div className="mx-auto max-w-3xl flex flex-col items-center gap-10 text-center">
-        {/* <div className="flex flex-col uppercase">
-          <p className="text-plum text-4xl md:text-7xl font-bold leading-tight tracking-tight leading-tighter">
-            Verse sandwiches, echte smaken.
-          </p>
-          <p className="text-plum text-4xl md:text-7xl font-bold leading-tight tracking-tight leading-tighter">
-            Gewoon goed, elke dag.
-          </p>
-        </div> */}
-
         <div className="w-full flex justify-center">
           <Image
             src="/images/sandwichbetter.webp"
@@ -26,14 +19,11 @@ export function AboutSection() {
           />
         </div>
 
-        <div className="flex flex-col gap-6 max-w-2xl">
-          <p className="text-plum text-lg leading-relaxed">
-            {t('p1')}
-          </p>
-          <p className="text-plum text-lg leading-relaxed">
-            {t('p2')}
-          </p>
-        </div>
+        {data?.body && (
+          <div className="flex flex-col gap-6 max-w-2xl text-plum text-lg leading-relaxed [&>p]:m-0">
+            <PortableText value={data.body as Parameters<typeof PortableText>[0]['value']} />
+          </div>
+        )}
       </div>
 
       <Image

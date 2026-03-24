@@ -5,5 +5,7 @@ import { menuSection } from './menu-section'
 import { testimonials } from './testimonials'
 import { contactInfo } from './contact-info'
 import { cateringLogos } from './catering-logos'
+import { aboutSection } from './about-section'
+import { cateringSection } from './catering-section'
 
-export const schemaTypes = [hero, slogan, socialMedia, menuSection, testimonials, contactInfo, cateringLogos]
+export const schemaTypes = [hero, slogan, socialMedia, menuSection, testimonials, contactInfo, cateringLogos, aboutSection, cateringSection]

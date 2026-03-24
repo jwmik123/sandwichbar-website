@@ -6,6 +6,8 @@ const SOCIAL_MEDIA_FIELDS = `_id, _type, videos[]{ _key, title, embedUrl }`
 const MENU_FIELDS = `_id, _type, "menuPdfUrl": menuPdf.asset->url`
 const TESTIMONIALS_FIELDS = `_id, _type, items[]{ _key, author, quote, rating }`
 const CONTACT_FIELDS = `_id, _type, address, phone, email, openingHours[]{ _key, day, time }`
+const ABOUT_SECTION_FIELDS = `_id, _type, body`
+const CATERING_SECTION_FIELDS = `_id, _type, label, title, body, orderNowText, freeTestLunchText`
 
 // Resolves a translated document via the translation.metadata document.
 // Falls back to the default-locale document if no translation exists.
@@ -23,6 +25,9 @@ export const SOCIAL_MEDIA_QUERY = defineQuery(translatedQuery('socialMedia', 'so
 export const MENU_SECTION_QUERY = defineQuery(translatedQuery('menuSection', 'menuSection', MENU_FIELDS))
 export const TESTIMONIALS_QUERY = defineQuery(translatedQuery('testimonials', 'testimonials', TESTIMONIALS_FIELDS))
 export const CONTACT_INFO_QUERY = defineQuery(translatedQuery('contactInfo', 'contactInfo', CONTACT_FIELDS))
+
+export const ABOUT_SECTION_QUERY = defineQuery(translatedQuery('aboutSection', 'aboutSection', ABOUT_SECTION_FIELDS))
+export const CATERING_SECTION_QUERY = defineQuery(translatedQuery('cateringSection', 'cateringSection', CATERING_SECTION_FIELDS))
 
 export const CATERING_LOGOS_QUERY = defineQuery(
   `*[_type == "cateringLogos"][0]{

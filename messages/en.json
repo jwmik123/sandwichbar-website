@@ -86,6 +86,16 @@
     "successMessage": "We'll be in touch soon to confirm your free trial lunch box.",
     "errorMessage": "Something went wrong. Please try again or email orders@thesandwichbar.nl"
   },
+  "member": {
+    "label": "Loyalty programme",
+    "titleWord": "Become a",
+    "titleAccent": "member",
+    "p1": "For every euro you spend at one of our locations, you earn 1 loyalty point.",
+    "p2": "You can redeem your saved points for great rewards — think a sandwich of your choice, BOCCA coffee beans, or an awesome sandwich bar hoodie.",
+    "p3": "Can you already picture yourself rocking our hoodie? Scan the QR\u00a0code at any of our locations when you visit and start earning!",
+    "ctaLabel": "Already a member and want to check your balance?",
+    "ctaButton": "Check your balance"
+  },
   "location": {
     "titlePrefix": "Our",
     "titleAccent": "Locations",

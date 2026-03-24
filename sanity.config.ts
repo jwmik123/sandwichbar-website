@@ -16,7 +16,7 @@ export const SUPPORTED_LANGUAGES = [
 
 export const DEFAULT_LOCALE = 'nl'
 
-const TRANSLATABLE_TYPES = ['hero', 'slogan', 'socialMedia', 'menuSection', 'testimonials', 'contactInfo']
+const TRANSLATABLE_TYPES = ['hero', 'slogan', 'socialMedia', 'menuSection', 'testimonials', 'contactInfo', 'aboutSection', 'cateringSection']
 
 export default defineConfig({
   name: 'sandwichbar',

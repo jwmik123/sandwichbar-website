@@ -1,7 +1,7 @@
 import type { StructureResolver } from 'sanity/structure'
 import { HomeIcon, BlockContentIcon, PlayIcon, MenuIcon, UsersIcon, EnvelopeIcon } from '@sanity/icons'
 
-const SINGLETONS = ['hero', 'slogan', 'socialMedia', 'menuSection', 'testimonials', 'contactInfo']
+const SINGLETONS = ['hero', 'slogan', 'socialMedia', 'menuSection', 'testimonials', 'contactInfo', 'aboutSection', 'cateringSection']
 
 export const structure: StructureResolver = (S) =>
   S.list()
@@ -43,6 +43,16 @@ export const structure: StructureResolver = (S) =>
                 .title('Contact Info')
                 .icon(EnvelopeIcon)
                 .child(S.document().schemaType('contactInfo').documentId('contactInfo').title('Contact Info')),
+
+              S.listItem()
+                .title('About Section')
+                .icon(BlockContentIcon)
+                .child(S.document().schemaType('aboutSection').documentId('aboutSection').title('About Section')),
+
+              S.listItem()
+                .title('Catering Section')
+                .icon(EnvelopeIcon)
+                .child(S.document().schemaType('cateringSection').documentId('cateringSection').title('Catering Section')),
             ]),
         ),
 

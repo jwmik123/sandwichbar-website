@@ -86,6 +86,16 @@
     "successMessage": "We nemen snel contact met je op om je gratis proeflunch box te bevestigen.",
     "errorMessage": "Er is iets misgegaan. Probeer het opnieuw of stuur een mail naar orders@thesandwichbar.nl"
   },
+  "member": {
+    "label": "Loyaliteitsprogramma",
+    "titleWord": "Word",
+    "titleAccent": "member",
+    "p1": "Voor elke euro die je bij ons uitgeeft in een van onze vestigingen, ontvang je 1 loyalty punt.",
+    "p2": "Deze gespaarde punten kun je weer inwisselen voor leuke beloningen. Denk aan een broodje naar keuze, koffiebonen van BOCCA of een te gekke sandwich bar hoodie.",
+    "p3": "Zie jij jezelf al schitteren in onze hoodie? Meld je via de QR\u00a0code in een van onze vestigingen aan wanneer je langskomt en begin met sparen!",
+    "ctaLabel": "Ben je al member en wil je je saldo checken?",
+    "ctaButton": "Check je saldo"
+  },
   "location": {
     "titlePrefix": "Onze",
     "titleAccent": "Locaties",

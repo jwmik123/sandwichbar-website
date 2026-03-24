@@ -4,7 +4,10 @@
       "Bash(npm install:*)",
       "mcp__Sanity__query_documents",
       "mcp__Sanity__publish_documents",
-      "WebSearch"
+      "WebSearch",
+      "mcp__Sanity__patch_document_from_json",
+      "Bash(npx sanity@latest schema list)",
+      "Bash(node -e \":*)"
     ]
   }
 }

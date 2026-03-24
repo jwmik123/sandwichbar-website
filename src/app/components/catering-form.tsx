@@ -147,7 +147,7 @@ export function CateringForm() {
 
       {/* Row 3 — Delivery date + time */}
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-        <div>
+        <div className="min-w-0">
           <label htmlFor="deliveryDate" className={labelClass}>
             {t('deliveryDate')} <span className="text-plum">*</span>
           </label>
@@ -163,7 +163,7 @@ export function CateringForm() {
           />
           <p className="mt-1.5 text-xs text-muted/70">{t('formNote')}</p>
         </div>
-        <div>
+        <div className="min-w-0">
           <label htmlFor="deliveryTime" className={labelClass}>
             {t('deliveryTime')} <span className="text-plum">*</span>
           </label>

@@ -145,7 +145,7 @@ export function Footer({ openingHours, phone, email, faqItems }: FooterProps) {
               THE<br />SANDWICH<br />BAR
             </p>
             <p className="mt-8 text-xs uppercase tracking-widest text-cream/50">
-              {t('siteBy')}
+              {t('siteBy')} <a href="https://mikdevelopment.nl" target="_blank" rel="noopener noreferrer" className="font-bold hover:text-orange-500/80 transition-colors">Mik Development</a>
             </p>
           </div>
 
@@ -155,8 +155,6 @@ export function Footer({ openingHours, phone, email, faqItems }: FooterProps) {
               { href: '/', label: t('home') },
               { href: '/menu', label: t('menu') },
               { href: '/catering', label: t('catering') },
-              { href: '/privacy', label: t('privacy') },
-              { href: '/terms', label: t('legal') },
             ] as const).map(({ href, label }) => (
               <Link
                 key={href}
@@ -199,6 +197,14 @@ export function Footer({ openingHours, phone, email, faqItems }: FooterProps) {
               <a href="tel:+31615004988" className="text-sm text-cream/70 transition-colors duration-150 hover:text-cream">
                 06-15004988
               </a>
+            </div>
+            <div className="flex flex-col gap-1.5 mt-2">
+              <Link href="/privacy" className="text-xs text-cream/40 transition-colors duration-150 hover:text-cream/70">
+                {t('privacy')}
+              </Link>
+              <Link href="/terms" className="text-xs text-cream/40 transition-colors duration-150 hover:text-cream/70">
+                {t('legal')}
+              </Link>
             </div>
           </div>
 

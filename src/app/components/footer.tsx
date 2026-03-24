@@ -15,6 +15,8 @@ type OpeningHour = {
 
 type FooterProps = {
   openingHours?: OpeningHour[] | null
+  phone?: string | null
+  email?: string | null
 }
 
 // ─── Opening Hours hook ───────────────────────────────────────────────────────
@@ -104,7 +106,7 @@ const TikTokIcon = () => (
 
 // ─── Footer ───────────────────────────────────────────────────────────────────
 
-export function Footer({ openingHours }: FooterProps) {
+export function Footer({ openingHours, phone, email }: FooterProps) {
   const { currentDayIdx, isOpen } = useOpeningStatus(openingHours)
   const t = useTranslations('footer')
 
@@ -128,7 +130,7 @@ export function Footer({ openingHours }: FooterProps) {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
 
           {/* Left — big stacked title */}
-          <div className="col-span-5 flex flex-col justify-between">
+          <div className="col-span-4 flex flex-col justify-between">
             <p className="font-poppins font-bold leading-none text-cream" style={{ fontSize: 'clamp(2rem, 7vw, 4rem)' }}>
               THE<br />SANDWICH<br />BAR
             </p>
@@ -137,8 +139,8 @@ export function Footer({ openingHours }: FooterProps) {
             </p>
           </div>
 
-          {/* Middle — nav links */}
-          <div className="col-span-3 flex flex-col gap-2 md:pt-1">
+          {/* Nav links */}
+          <div className="col-span-2 flex flex-col gap-2 md:pt-1">
             {([
               { href: '/', label: t('home') },
               { href: '/menu', label: t('menu') },
@@ -156,8 +158,42 @@ export function Footer({ openingHours }: FooterProps) {
             ))}
           </div>
 
+          {/* Contact — general + catering */}
+          <div className="col-span-3 flex flex-col gap-5 md:pt-1">
+            {(email || phone) && (
+              <div className="flex flex-col gap-1.5">
+                <p className="mb-1 text-xs uppercase tracking-widest text-cream/40">{t('generalContact')}</p>
+                {email && (
+                  <a href={`mailto:${email}`} className="text-sm text-cream/70 transition-colors duration-150 hover:text-cream">
+                    {email}
+                  </a>
+                )}
+                {phone && (
+                  <div>
+                    <a href={`tel:${phone.replace(/\s/g, '')}`} className="text-sm text-cream/70 transition-colors duration-150 hover:text-cream">
+                      {phone}
+                    </a>
+                    <p className="mt-0.5 text-xs text-cream/30">{t('notForCatering')}</p>
+                  </div>
+                )}
+              </div>
+            )}
+            <div className="flex flex-col gap-1.5">
+              <p className="mb-1 text-xs uppercase tracking-widest text-cream/40">{t('catering')}</p>
+              <a href="mailto:orders@thesandwichbar.nl" className="text-sm text-cream/70 transition-colors duration-150 hover:text-cream">
+                orders@thesandwichbar.nl
+              </a>
+              <a href="tel:+31615657447" className="text-sm text-cream/70 transition-colors duration-150 hover:text-cream">
+                06-15657447
+              </a>
+              <a href="tel:+31615004988" className="text-sm text-cream/70 transition-colors duration-150 hover:text-cream">
+                06-15004988
+              </a>
+            </div>
+          </div>
+
           {/* Right — tagline + opening status + socials */}
-          <div className="col-span-4 flex flex-col gap-6 md:pt-1">
+          <div className="col-span-3 flex flex-col gap-6 md:pt-1">
             <p className="max-w-xs text-sm leading-relaxed text-cream/60">
               {t('tagline')}
             </p>

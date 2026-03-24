@@ -54,6 +54,22 @@ a, button, [role="button"], label[for] {
   }
 } */
 
+/* Draggable stickers */
+@keyframes sticker-jiggle {
+  0%,
+  100% { transform: rotate(var(--base-rot, 0deg)) scale(1); }
+  18%  { transform: rotate(calc(var(--base-rot, 0deg) + 1.4deg)) scale(1.009); }
+  36%  { transform: rotate(calc(var(--base-rot, 0deg) - 0.9deg)) scale(0.995); }
+  54%  { transform: rotate(calc(var(--base-rot, 0deg) + 0.7deg)) scale(1.005); }
+  72%  { transform: rotate(calc(var(--base-rot, 0deg) - 1.1deg)) scale(0.998); }
+  90%  { transform: rotate(calc(var(--base-rot, 0deg) + 0.4deg)) scale(1.003); }
+}
+
+.sticker-idle {
+  animation: sticker-jiggle 3.2s ease-in-out infinite;
+  animation-delay: var(--jiggle-delay, 0s);
+}
+
 /* Bubble arrow button */
 .btn-group {
   grid-column-gap: 3em;

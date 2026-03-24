@@ -17,7 +17,6 @@ import { SloganSection } from '../components/slogan-section'
 import { SocialMediaSection } from '../components/social-media-section'
 // import { MenuSection } from '../components/menu-section'
 import { TestimonialsSection } from '../components/testimonials-section'
-import { ContactSection } from '../components/contact-section'
 import { AboutSection } from '../components/about-section'
 import { ImageSection } from '../components/image-section'
 import { SandwichSlider } from '../components/sandwich-slider'
@@ -65,8 +64,7 @@ export default async function Home() {
       {/* <MenuSection data={menu.data} /> */}
       <TestimonialsSection data={testimonials.data} />
       <LocationSection />
-      <ContactSection data={contact.data} />
-      <Footer openingHours={contact.data?.openingHours} />
+      <Footer openingHours={contact.data?.openingHours} phone={contact.data?.phone} email={contact.data?.email} />
     </>
   )
 }

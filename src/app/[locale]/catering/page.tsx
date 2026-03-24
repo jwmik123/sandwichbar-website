@@ -24,18 +24,29 @@ export default async function CateringPage() {
 
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <section className="bg-plum overflow-hidden px-6 pt-0 pb-0">
+        {/* Mobile hero image — full bleed, no margins */}
+        <div className="lg:hidden -mx-6">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/The Sandwichbar 01.webp"
+            alt=""
+            className="w-full object-cover"
+            style={{ aspectRatio: '4/3' }}
+          />
+        </div>
+
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
 
             {/* Left — text */}
-            <div className="pt-36 pb-20">
+            <div className="pt-10 pb-20 lg:pt-36">
               <span className="mb-4 inline-block text-sm font-semibold uppercase tracking-widest text-cream/50">
                 {t('heroLabel')}
               </span>
-              <h1 className="mb-6 text-5xl font-bold uppercase leading-tightest tracking-tight text-cream md:text-6xl lg:text-7xl">
+              <h1 className="mb-6 text-3xl font-bold uppercase leading-tightest tracking-tight text-cream md:text-6xl lg:text-7xl">
                 {t('heroTitle')}
               </h1>
-              <p className="mb-8 max-w-lg text-lg leading-relaxed text-cream/75">
+              <p className="mb-8 max-w-lg text-md md:text-lg leading-relaxed text-cream/75">
                 {t('heroSubtitle')}
               </p>
                <div className="flex flex-wrap mb-8">
@@ -46,9 +57,31 @@ export default async function CateringPage() {
                     {c('orderNow')}
                   </TransitionLink>
                 </div>
-              <p className="text-sm text-cream/40">
-                {t('heroContact')}
-              </p>
+              <div className="space-y-2">
+                <p className="text-xs font-semibold uppercase tracking-widest text-cream/40">
+                  {t('heroContactLabel')}
+                </p>
+                <div className="flex flex-wrap gap-x-4 gap-y-1">
+                  <a
+                    href={`mailto:${t('heroContactEmail')}`}
+                    className="text-sm font-medium text-cream/80 hover:text-cream transition-colors"
+                  >
+                    {t('heroContactEmail')}
+                  </a>
+                  <a
+                    href={`tel:${t('heroContactPhone1').replace(/-/g, '')}`}
+                    className="text-sm font-medium text-cream/80 hover:text-cream transition-colors"
+                  >
+                    {t('heroContactPhone1')}
+                  </a>
+                  <a
+                    href={`tel:${t('heroContactPhone2').replace(/-/g, '')}`}
+                    className="text-sm font-medium text-cream/80 hover:text-cream transition-colors"
+                  >
+                    {t('heroContactPhone2')}
+                  </a>
+                </div>
+              </div>
             </div>
 
             {/* Right — vertical masonry slider */}

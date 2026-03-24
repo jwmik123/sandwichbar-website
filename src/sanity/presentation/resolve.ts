@@ -38,5 +38,17 @@ export const resolve: PresentationPluginOptions['resolve'] = {
         locations: [{ title: 'Contact Info', href: '/' }],
       }),
     }),
+    aboutSection: defineLocations({
+      select: { title: '_type' },
+      resolve: () => ({
+        locations: [{ title: 'About Section', href: '/' }],
+      }),
+    }),
+    cateringSection: defineLocations({
+      select: { title: 'title' },
+      resolve: (doc) => ({
+        locations: [{ title: doc?.title || 'Catering Section', href: '/' }],
+      }),
+    }),
   },
 }

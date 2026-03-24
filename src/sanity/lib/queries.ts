@@ -1,6 +1,7 @@
 import { defineQuery } from 'next-sanity'
 
 const HERO_FIELDS = `_id, _type, title, subtitle, buttonText, buttonLink`
+const FAQ_FIELDS = `_id, _type, items[]{ _key, question, answer }`
 const SLOGAN_FIELDS = `_id, _type, text`
 const SOCIAL_MEDIA_FIELDS = `_id, _type, videos[]{ _key, title, embedUrl }`
 const MENU_FIELDS = `_id, _type, "menuPdfUrl": menuPdf.asset->url`
@@ -26,8 +27,27 @@ export const MENU_SECTION_QUERY = defineQuery(translatedQuery('menuSection', 'me
 export const TESTIMONIALS_QUERY = defineQuery(translatedQuery('testimonials', 'testimonials', TESTIMONIALS_FIELDS))
 export const CONTACT_INFO_QUERY = defineQuery(translatedQuery('contactInfo', 'contactInfo', CONTACT_FIELDS))
 
-export const ABOUT_SECTION_QUERY = defineQuery(translatedQuery('aboutSection', 'aboutSection', ABOUT_SECTION_FIELDS))
-export const CATERING_SECTION_QUERY = defineQuery(translatedQuery('cateringSection', 'cateringSection', CATERING_SECTION_FIELDS))
+// aboutSection and cateringSection use the standard @sanity/document-internationalization
+// naming convention (e.g. aboutSection__i18n_en), so we look up by ID directly.
+export const ABOUT_SECTION_QUERY = defineQuery(
+  `coalesce(
+    *[_type == "aboutSection" && _id == "aboutSection__i18n_" + $locale][0]{${ABOUT_SECTION_FIELDS}},
+    *[_type == "aboutSection" && _id == "aboutSection"][0]{${ABOUT_SECTION_FIELDS}}
+  )`
+)
+export const CATERING_SECTION_QUERY = defineQuery(
+  `coalesce(
+    *[_type == "cateringSection" && _id == "cateringSection__i18n_" + $locale][0]{${CATERING_SECTION_FIELDS}},
+    *[_type == "cateringSection" && _id == "cateringSection"][0]{${CATERING_SECTION_FIELDS}}
+  )`
+)
+
+export const FAQ_QUERY = defineQuery(
+  `coalesce(
+    *[_type == "faq" && language == $locale][0]{${FAQ_FIELDS}},
+    *[_type == "faq" && language == "nl"][0]{${FAQ_FIELDS}}
+  )`
+)
 
 export const CATERING_LOGOS_QUERY = defineQuery(
   `*[_type == "cateringLogos"][0]{

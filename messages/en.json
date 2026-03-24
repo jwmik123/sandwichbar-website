@@ -101,6 +101,9 @@
     "ctaLabel": "Already a member and want to check your balance?",
     "ctaButton": "Check your balance"
   },
+  "faq": {
+    "title": "Frequently\nAsked"
+  },
   "location": {
     "titlePrefix": "Our",
     "titleAccent": "Locations",

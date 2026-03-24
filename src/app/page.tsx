@@ -7,6 +7,8 @@ import {
   MENU_SECTION_QUERY,
   TESTIMONIALS_QUERY,
   CONTACT_INFO_QUERY,
+  ABOUT_SECTION_QUERY,
+  CATERING_SECTION_QUERY,
 } from '@/sanity/lib/queries'
 import { HeroSection } from './components/hero-section'
 import { SloganSection } from './components/slogan-section'
@@ -15,6 +17,7 @@ import { MenuSection } from './components/menu-section'
 import { TestimonialsSection } from './components/testimonials-section'
 import { ContactSection } from './components/contact-section'
 import { AboutSection } from './components/about-section'
+import { CateringSection } from './components/catering-section'
 import { ImageSection } from './components/image-section'
 import { SandwichSlider } from './components/sandwich-slider'
 import { LocationSection } from './components/location-section'
@@ -24,20 +27,23 @@ export default async function Home() {
   const locale = await getLocale()
   const params = { locale }
 
-  const [hero, slogan, socialMedia, menu, testimonials, contact] = await Promise.all([
+  const [hero, slogan, socialMedia, menu, testimonials, contact, aboutData, cateringData] = await Promise.all([
     sanityFetch({ query: HERO_QUERY, params }),
     sanityFetch({ query: SLOGAN_QUERY, params }),
     sanityFetch({ query: SOCIAL_MEDIA_QUERY, params }),
     sanityFetch({ query: MENU_SECTION_QUERY, params }),
     sanityFetch({ query: TESTIMONIALS_QUERY, params }),
     sanityFetch({ query: CONTACT_INFO_QUERY, params }),
+    sanityFetch({ query: ABOUT_SECTION_QUERY, params }),
+    sanityFetch({ query: CATERING_SECTION_QUERY, params }),
   ])
 
   return (
     <>
       <HeroSection data={hero.data} />
       <SloganSection data={slogan.data} />
-      <AboutSection />
+      <AboutSection data={aboutData.data} />
+      <CateringSection data={cateringData.data} />
       <ImageSection />
       <SandwichSlider />
       <SocialMediaSection videos={socialMedia.data} />

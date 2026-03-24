@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { MatterBalls } from './matter-balls'
+import { FaqSection } from './faq-section'
 import { useTranslations } from 'next-intl'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -13,10 +14,17 @@ type OpeningHour = {
   time?: string | null
 }
 
+type FaqItem = {
+  _key: string
+  question?: string | null
+  answer?: string | null
+}
+
 type FooterProps = {
   openingHours?: OpeningHour[] | null
   phone?: string | null
   email?: string | null
+  faqItems?: FaqItem[] | null
 }
 
 // ─── Opening Hours hook ───────────────────────────────────────────────────────
@@ -106,11 +114,13 @@ const TikTokIcon = () => (
 
 // ─── Footer ───────────────────────────────────────────────────────────────────
 
-export function Footer({ openingHours, phone, email }: FooterProps) {
+export function Footer({ openingHours, phone, email, faqItems }: FooterProps) {
   const { currentDayIdx, isOpen } = useOpeningStatus(openingHours)
   const t = useTranslations('footer')
 
   return (
+    <>
+    <FaqSection items={faqItems} />
     <footer className="relative overflow-hidden bg-plum text-cream">
 
       {/* ── SVG decorative background ── */}
@@ -256,5 +266,6 @@ export function Footer({ openingHours, phone, email }: FooterProps) {
       <div className="pointer-events-none relative z-10" style={{ height: 'clamp(180px, 25vw, 340px)' }} />
 
     </footer>
+    </>
   )
 }

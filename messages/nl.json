@@ -101,6 +101,9 @@
     "ctaLabel": "Ben je al member en wil je je saldo checken?",
     "ctaButton": "Check je saldo"
   },
+  "faq": {
+    "title": "Veelgestelde\nVragen"
+  },
   "location": {
     "titlePrefix": "Onze",
     "titleAccent": "Locaties",

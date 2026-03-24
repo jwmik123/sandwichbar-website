@@ -1,4 +1,3 @@
-import { getLocale } from 'next-intl/server'
 import { sanityFetch } from '@/sanity/lib/live'
 import {
   HERO_QUERY,
@@ -9,6 +8,7 @@ import {
   SOCIAL_MEDIA_QUERY,
   ABOUT_SECTION_QUERY,
   CATERING_SECTION_QUERY,
+  FAQ_QUERY,
 } from '@/sanity/lib/queries'
 import { getLatestTikToks } from '@/lib/tiktok'
 import type { VideoItem } from '../components/social-media-section'
@@ -25,21 +25,22 @@ import { Footer } from '../components/footer'
 import { CateringSection } from '../components/catering-section'
 import { MemberSection } from '../components/member-section'
 
-export default async function Home() {
-  const locale = await getLocale()
+export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
 
-  const params = { locale }
+  const queryParams = { locale }
 
-  const [hero, slogan, , testimonials, contact, tiktokVideos, socialMediaData, aboutData, cateringData] = await Promise.all([
-    sanityFetch({ query: HERO_QUERY, params }),
-    sanityFetch({ query: SLOGAN_QUERY, params }),
-    sanityFetch({ query: MENU_SECTION_QUERY, params }),
-    sanityFetch({ query: TESTIMONIALS_QUERY, params }),
-    sanityFetch({ query: CONTACT_INFO_QUERY, params }),
+  const [hero, slogan, , testimonials, contact, tiktokVideos, socialMediaData, aboutData, cateringData, faqData] = await Promise.all([
+    sanityFetch({ query: HERO_QUERY, params: queryParams }),
+    sanityFetch({ query: SLOGAN_QUERY, params: queryParams }),
+    sanityFetch({ query: MENU_SECTION_QUERY, params: queryParams }),
+    sanityFetch({ query: TESTIMONIALS_QUERY, params: queryParams }),
+    sanityFetch({ query: CONTACT_INFO_QUERY, params: queryParams }),
     getLatestTikToks().catch(() => []),
-    sanityFetch({ query: SOCIAL_MEDIA_QUERY, params }),
-    sanityFetch({ query: ABOUT_SECTION_QUERY, params }),
-    sanityFetch({ query: CATERING_SECTION_QUERY, params }),
+    sanityFetch({ query: SOCIAL_MEDIA_QUERY, params: queryParams }),
+    sanityFetch({ query: ABOUT_SECTION_QUERY, params: queryParams }),
+    sanityFetch({ query: CATERING_SECTION_QUERY, params: queryParams }),
+    sanityFetch({ query: FAQ_QUERY, params: queryParams }),
   ])
 
   const videos: VideoItem[] = tiktokVideos.length
@@ -64,7 +65,7 @@ export default async function Home() {
       {/* <MenuSection data={menu.data} /> */}
       <TestimonialsSection data={testimonials.data} />
       <LocationSection />
-      <Footer openingHours={contact.data?.openingHours} phone={contact.data?.phone} email={contact.data?.email} />
+      <Footer openingHours={contact.data?.openingHours} phone={contact.data?.phone} email={contact.data?.email} faqItems={faqData.data?.items} />
     </>
   )
 }

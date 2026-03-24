@@ -7,5 +7,6 @@ import { contactInfo } from './contact-info'
 import { cateringLogos } from './catering-logos'
 import { aboutSection } from './about-section'
 import { cateringSection } from './catering-section'
+import { faq } from './faq'
 
-export const schemaTypes = [hero, slogan, socialMedia, menuSection, testimonials, contactInfo, cateringLogos, aboutSection, cateringSection]
+export const schemaTypes = [hero, slogan, socialMedia, menuSection, testimonials, contactInfo, cateringLogos, aboutSection, cateringSection, faq]

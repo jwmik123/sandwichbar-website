@@ -144,7 +144,7 @@ export function Footer({ openingHours, phone, email, faqItems }: FooterProps) {
             <p className="font-poppins font-bold leading-none text-cream" style={{ fontSize: 'clamp(2rem, 7vw, 4rem)' }}>
               THE<br />SANDWICH<br />BAR
             </p>
-            <p className="mt-8 text-xs uppercase tracking-widest text-cream/50">
+            <p className="mt-8 hidden text-xs uppercase tracking-widest text-cream/50 md:block">
               {t('siteBy')} <a href="https://mikdevelopment.nl" target="_blank" rel="noopener noreferrer" className="font-bold hover:text-orange-500/80 transition-colors">Mik Development</a>
             </p>
           </div>
@@ -267,6 +267,11 @@ export function Footer({ openingHours, phone, email, faqItems }: FooterProps) {
           </div>
         </div>
       </div>
+
+      {/* Mobile-only site credit — shown below all sections */}
+      <p className="relative z-10 px-8 pb-6 text-xs uppercase tracking-widest text-cream/50 md:hidden">
+        {t('siteBy')} <a href="https://mikdevelopment.nl" target="_blank" rel="noopener noreferrer" className="font-bold hover:text-orange-500/80 transition-colors">Mik Development</a>
+      </p>
 
       {/* Spacer so balls are visible — pointer-events-none lets clicks reach the canvas */}
       <div className="pointer-events-none relative z-10" style={{ height: 'clamp(180px, 25vw, 340px)' }} />

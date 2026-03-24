@@ -35,6 +35,8 @@ export function MatterBalls() {
       const dpr = window.devicePixelRatio || 1
       const width = target.clientWidth
       const height = target.clientHeight
+      const isMobile = width < 768
+      const baseRadius = isMobile ? 30 : BASE_RADIUS
 
       // Pre-load images at high resolution
       const loadedImages = await Promise.all(
@@ -76,10 +78,10 @@ export function MatterBalls() {
       // Balls — parked high above, out of view
       type BallInfo = { body: Matter.Body; imgIdx: number; r: number }
       const balls: BallInfo[] = []
-      const count = Math.max(8, Math.floor(width / 110))
+      const count = isMobile ? Math.max(12, Math.floor(width / 60)) : Math.max(8, Math.floor(width / 110))
 
       for (let i = 0; i < count; i++) {
-        const r = BASE_RADIUS + Math.random() * 20 - 10
+        const r = baseRadius + Math.random() * 20 - 10
         const x = r + Math.random() * (width - r * 2)
         const y = -r * 2 - i * (r * 2.6)
         const body = Bodies.circle(x, y, r, {

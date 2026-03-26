@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { InertiaPlugin } from 'gsap/InertiaPlugin'
@@ -11,23 +11,12 @@ gsap.registerPlugin(InertiaPlugin)
 export type VideoItem = {
   id: string
   title?: string
-  cover_image_url?: string
-  share_url?: string
-  embedUrl?: string
+  videoUrl?: string
 }
 
 // ── Per-card component ────────────────────────────────────────────────────────
 
-function extractTikTokVideoId(url: string): string | null {
-  const match = url.match(/\/video\/(\d+)/)
-  return match ? match[1] : null
-}
-
 function VideoCard({ video }: { video: VideoItem }) {
-  const t = useTranslations('socialMedia')
-
-  const videoId = video.embedUrl ? extractTikTokVideoId(video.embedUrl) : null
-
   return (
     <div className="relative w-full">
       {/* momentum hover wrapper */}
@@ -36,55 +25,29 @@ function VideoCard({ video }: { video: VideoItem }) {
           data-momentum-hover-target=""
           className="group relative w-full overflow-hidden rounded-xl text-cream will-change-transform"
         >
-          {/* 9:16 aspect-ratio spacer — only for image fallback cards */}
-          {!videoId && <div className="pt-[177.78%]" />}
-
-          {videoId ? (
-            /* Clipping wrapper — controls visible crop of the TikTok embed */
-            <div className="overflow-hidden" style={{ aspectRatio: '9/16' }}>
-              <blockquote
-                className="tiktok-embed"
-                cite={`https://www.tiktok.com/@thesandwichbaramsterdam/video/${videoId}`}
-                data-video-id={videoId}
-                style={{ maxWidth: '100%', minWidth: '0px', margin: 0 }}
-              >
-                <section />
-              </blockquote>
-            </div>
-          ) : video.cover_image_url ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={video.cover_image_url}
-              alt={video.title ?? ''}
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+          {video.videoUrl ? (
+            <video
+              src={video.videoUrl}
+              className="w-full object-cover"
+              style={{ aspectRatio: '9/16' }}
+              autoPlay
+              muted
+              loop
+              playsInline
             />
           ) : (
-            <div className="absolute inset-0 flex items-center justify-center bg-plum/30">
-              <TikTokIcon className="h-14 w-14 text-cream/30" />
+            <div className="flex items-center justify-center bg-plum/30" style={{ aspectRatio: '9/16' }}>
+              <PlayIcon className="h-14 w-14 text-cream/30" />
             </div>
           )}
 
-          {/* Gradient overlay + bottom info (only for non-embed cards) */}
-          {!videoId && (
+          {video.title && (
             <>
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-5">
-                {video.title && (
-                  <h3 className="text-sm font-semibold leading-snug text-cream drop-shadow">
-                    {video.title}
-                  </h3>
-                )}
-                {video.share_url && (
-                  <a
-                    href={video.share_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-1.5 flex items-center gap-1.5 text-xs text-cream/60 transition-colors hover:text-cream"
-                  >
-                    <TikTokIcon className="h-3 w-3" />
-                    {t('watchOnTikTok')}
-                  </a>
-                )}
+                <h3 className="text-sm font-semibold leading-snug text-cream drop-shadow">
+                  {video.title}
+                </h3>
               </div>
             </>
           )}
@@ -99,16 +62,6 @@ function VideoCard({ video }: { video: VideoItem }) {
 export function SocialMediaSection({ videos }: { videos: VideoItem[] }) {
   const t = useTranslations('socialMedia')
   const sectionRef = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    const script = document.createElement('script')
-    script.src = 'https://www.tiktok.com/embed.js'
-    script.async = true
-    document.body.appendChild(script)
-    return () => {
-      document.body.removeChild(script)
-    }
-  }, [])
 
   useGSAP(
     () => {
@@ -202,10 +155,10 @@ export function SocialMediaSection({ videos }: { videos: VideoItem[] }) {
 
 // ── Icons ─────────────────────────────────────────────────────────────────────
 
-function TikTokIcon({ className }: { className?: string }) {
+function PlayIcon({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.24 8.24 0 0 0 4.82 1.54V6.78a4.85 4.85 0 0 1-1.05-.09z" />
+      <path d="M8 5v14l11-7z" />
     </svg>
   )
 }

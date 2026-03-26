@@ -10,7 +10,6 @@ import {
   CATERING_SECTION_QUERY,
   FAQ_QUERY,
 } from '@/sanity/lib/queries'
-import { getLatestTikToks } from '@/lib/tiktok'
 import type { VideoItem } from '../components/social-media-section'
 import { HeroSection } from '../components/hero-section'
 import { SloganSection } from '../components/slogan-section'
@@ -30,26 +29,25 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
   const queryParams = { locale }
 
-  const [hero, slogan, , testimonials, contact, tiktokVideos, socialMediaData, aboutData, cateringData, faqData] = await Promise.all([
+  const [hero, slogan, , testimonials, contact, socialMediaData, aboutData, cateringData, faqData] = await Promise.all([
     sanityFetch({ query: HERO_QUERY, params: queryParams }),
     sanityFetch({ query: SLOGAN_QUERY, params: queryParams }),
     sanityFetch({ query: MENU_SECTION_QUERY, params: queryParams }),
     sanityFetch({ query: TESTIMONIALS_QUERY, params: queryParams }),
     sanityFetch({ query: CONTACT_INFO_QUERY, params: queryParams }),
-    getLatestTikToks().catch(() => []),
     sanityFetch({ query: SOCIAL_MEDIA_QUERY, params: queryParams }),
     sanityFetch({ query: ABOUT_SECTION_QUERY, params: queryParams }),
     sanityFetch({ query: CATERING_SECTION_QUERY, params: queryParams }),
     sanityFetch({ query: FAQ_QUERY, params: queryParams }),
   ])
 
-  const videos: VideoItem[] = tiktokVideos.length
-    ? tiktokVideos.map((v) => ({ id: v.id, title: v.title, cover_image_url: v.cover_image_url, share_url: v.share_url }))
-    : (socialMediaData.data?.videos ?? []).map((v: { _key: string; title?: string; embedUrl?: string }) => ({
-        id: v._key,
-        title: v.title,
-        embedUrl: v.embedUrl,
-      }))
+  const videos: VideoItem[] = (socialMediaData.data?.videos ?? []).map(
+    (v: { _key: string; title?: string; videoUrl?: string }) => ({
+      id: v._key,
+      title: v.title,
+      videoUrl: v.videoUrl,
+    }),
+  )
 
   return (
     <>

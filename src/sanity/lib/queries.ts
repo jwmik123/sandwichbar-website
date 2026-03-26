@@ -3,7 +3,7 @@ import { defineQuery } from 'next-sanity'
 const HERO_FIELDS = `_id, _type, title, subtitle, buttonText, buttonLink`
 const FAQ_FIELDS = `_id, _type, items[]{ _key, question, answer }`
 const SLOGAN_FIELDS = `_id, _type, text`
-const SOCIAL_MEDIA_FIELDS = `_id, _type, videos[]{ _key, title, embedUrl }`
+const SOCIAL_MEDIA_FIELDS = `_id, _type, videos[]{ _key, title, "videoUrl": video.asset->url }`
 const MENU_FIELDS = `_id, _type, "menuPdfUrl": menuPdf.asset->url`
 const TESTIMONIALS_FIELDS = `_id, _type, items[]{ _key, author, quote, rating }`
 const CONTACT_FIELDS = `_id, _type, address, phone, email, openingHours[]{ _key, day, time }`

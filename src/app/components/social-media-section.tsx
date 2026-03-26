@@ -21,9 +21,12 @@ function VideoCard({ video }: { video: VideoItem }) {
     <div className="relative w-full">
       {/* momentum hover wrapper */}
       <div data-momentum-hover-element="" className="relative w-full">
-        <div
+        <a
+          href="https://www.tiktok.com/@thesandwichbaramsterdam"
+          target="_blank"
+          rel="noopener noreferrer"
           data-momentum-hover-target=""
-          className="group relative w-full overflow-hidden rounded-xl text-cream will-change-transform"
+          className="group relative block w-full overflow-hidden rounded-xl text-cream will-change-transform"
         >
           {video.videoUrl ? (
             <video
@@ -51,7 +54,7 @@ function VideoCard({ video }: { video: VideoItem }) {
               </div>
             </>
           )}
-        </div>
+        </a>
       </div>
     </div>
   )

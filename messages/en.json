@@ -111,6 +111,8 @@
     "open": "Open",
     "closed": "Closed",
     "openInMaps": "Open in Google Maps",
+    "comingSoon": "Coming soon",
+    "openingOn": "Opening {date}",
     "days": {
       "monday": "Monday",
       "tuesday": "Tuesday",

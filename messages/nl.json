@@ -111,6 +111,8 @@
     "open": "Open",
     "closed": "Gesloten",
     "openInMaps": "Open in Google Maps",
+    "comingSoon": "Binnenkort open",
+    "openingOn": "Opent {date}",
     "days": {
       "monday": "Maandag",
       "tuesday": "Dinsdag",

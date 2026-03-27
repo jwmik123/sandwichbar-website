@@ -161,6 +161,7 @@ type LocationData = {
   mapsUrl: string
   image: string
   schedule: DayEntry[]
+  openingDate?: string // ISO date string, e.g. '2026-04-04' — show "coming soon" until this date
 }
 
 // TODO: Replace placeholder names, addresses and mapsUrl with real data
@@ -200,6 +201,7 @@ const LOCATIONS: LocationData[] = [
     mapsUrl: 'https://maps.app.goo.gl/mBG7LVu3xHNkC4DNA',
     image: '/images/tsb2-location.webp',
     schedule: SCHEDULE,
+    openingDate: '2026-04-03',
   },
 ]
 
@@ -207,6 +209,16 @@ const LOCATIONS: LocationData[] = [
 
 function LocationCard({ loc }: { loc: LocationData }) {
   const t = useTranslations('location')
+
+  const isComingSoon = !!loc.openingDate && new Date(loc.openingDate) > new Date()
+
+  const formattedOpeningDate = loc.openingDate
+    ? new Date(loc.openingDate).toLocaleDateString('en-GB', {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+      })
+    : null
 
   return (
     <div className="flex flex-col">
@@ -216,9 +228,21 @@ function LocationCard({ loc }: { loc: LocationData }) {
           src={loc.image}
           alt={`${loc.neighborhood}`}
           fill
-          className="object-cover"
+          className={`object-cover transition-all duration-300 ${isComingSoon ? 'brightness-75' : ''}`}
           sizes="(max-width: 768px) 100vw, 50vw"
         />
+        {isComingSoon && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="bg-cream/90 backdrop-blur-sm rounded-2xl px-6 py-4 text-center shadow-lg">
+              <p className="text-xs font-semibold text-plum/60 uppercase tracking-widest mb-1">
+                {t('comingSoon')}
+              </p>
+              <p className="text-lg font-bold text-plum">
+                {t('openingOn', { date: formattedOpeningDate ?? '' })}
+              </p>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Info */}
@@ -253,7 +277,7 @@ function LocationCard({ loc }: { loc: LocationData }) {
         </a>
 
         {/* Opening Hours */}
-        <OpeningHours days={loc.schedule} />
+        {!isComingSoon && <OpeningHours days={loc.schedule} />}
       </div>
     </div>
   )

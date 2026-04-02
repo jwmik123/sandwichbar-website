@@ -201,7 +201,7 @@ const LOCATIONS: LocationData[] = [
     mapsUrl: 'https://maps.app.goo.gl/mBG7LVu3xHNkC4DNA',
     image: '/images/tsb2-location.webp',
     schedule: SCHEDULE,
-    openingDate: '2026-04-03',
+    // openingDate: '2026-04-03',
   },
 ]
 

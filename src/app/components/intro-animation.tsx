@@ -25,7 +25,10 @@ export function IntroAnimation() {
     const heroTitle = document.querySelector('[data-hero-title]')
     const heroSubtitle = document.querySelector('[data-hero-subtitle]')
     const heroButton = document.querySelector('[data-hero-button]')
-    gsap.set([heroTitle, heroSubtitle, heroButton], { autoAlpha: 0, y: 20 })
+    const heroTargets = [heroTitle, heroSubtitle, heroButton].filter(Boolean)
+    if (heroTargets.length > 0) {
+      gsap.set(heroTargets, { autoAlpha: 0, y: 20 })
+    }
 
     const startAnimation = () => {
       const tl = gsap.timeline()

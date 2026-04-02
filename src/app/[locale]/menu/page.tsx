@@ -1,3 +1,5 @@
+export const revalidate = 60
+
 import { getLocale, getTranslations } from 'next-intl/server'
 import { sanityFetch } from '@/sanity/lib/live'
 import { MENU_SECTION_QUERY } from '@/sanity/lib/queries'

@@ -25,7 +25,7 @@ export function MenuSection({ data }: { data: MenuData | null }) {
         </div>
         <div className="w-full md:flex-[1] min-w-0">
           <Image
-            src="/images/drinkmenu.jpg"
+            src="/images/drinkmenu.jpeg"
             alt="Drink menu"
             width={0}
             height={0}

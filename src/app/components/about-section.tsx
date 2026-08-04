@@ -22,13 +22,13 @@ export function AboutSection({ data }: { data?: AboutSectionData | null }) {
   return (
     <section className="bg-cream pb-20 px-6 relative">
       <div className="mx-auto max-w-3xl flex flex-col items-center gap-10 text-center">
-        <div className="w-full flex justify-center">
+        <div className="relative w-2/3 aspect-[5/3]">
           <Image
-            src="/images/sandwichbetter.webp"
+            src="/images/locatieshoot/the-sandwichbar-20.webp"
             alt="The Sandwich Bar locatie"
-            width={900}
-            height={600}
-            className="w-2/3 h-auto aspect-[5/3] object-cover"
+            fill
+            className="object-cover object-[center_17%]"
+            sizes="(max-width: 768px) 66vw, 512px"
           />
         </div>
 

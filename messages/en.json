@@ -74,6 +74,8 @@
     "heroContactPhone1": "06-15657447",
     "heroContactPhone2": "06-15004988",
     "logosTitle": "Trusted by great companies",
+    "menuTitle": "Our catering menu",
+    "menuSubtitle": "Browse our full catering offering.",
     "formTitle": "Order your free trial lunch box",
     "formSubtitle": "Fill in the form below and we'll deliver 5 freshly made sandwiches to your office.",
     "formNote": "It is not possible to order a trial box for today — minimum one day in advance.",
@@ -97,7 +99,7 @@
     "titleAccent": "member",
     "p1": "For every euro you spend at one of our locations, you earn 1 loyalty point.",
     "p2": "You can redeem your saved points for great rewards — think a sandwich of your choice, BOCCA coffee beans, or an awesome sandwich bar hoodie.",
-    "p3": "Can you already picture yourself rocking our hoodie? Scan the QR\u00a0code at any of our locations when you visit and start earning!",
+    "p3": "Can you already picture yourself rocking our hoodie? Scan the QR code at any of our locations when you visit and start earning!",
     "ctaLabel": "Already a member and want to check your balance?",
     "ctaButton": "Check your balance"
   },
@@ -122,5 +124,8 @@
       "saturday": "Saturday",
       "sunday": "Sunday"
     }
+  },
+  "photoMarquee": {
+    "label": "a look inside"
   }
 }

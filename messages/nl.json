@@ -74,6 +74,8 @@
     "heroContactPhone1": "06-15657447",
     "heroContactPhone2": "06-15004988",
     "logosTitle": "Zij gingen je al voor",
+    "menuTitle": "Onze cateringkaart",
+    "menuSubtitle": "Bekijk ons complete catering aanbod.",
     "formTitle": "Bestel je gratis proeflunch box",
     "formSubtitle": "Vul het formulier in en wij bezorgen 5 vers gemaakte broodjes op jouw kantoor.",
     "formNote": "Het is niet mogelijk om een test box voor vandaag te bestellen — minimaal één dag van te voren bestellen.",
@@ -97,7 +99,7 @@
     "titleAccent": "member",
     "p1": "Voor elke euro die je bij ons uitgeeft in een van onze vestigingen, ontvang je 1 loyalty punt.",
     "p2": "Deze gespaarde punten kun je weer inwisselen voor leuke beloningen. Denk aan een broodje naar keuze, koffiebonen van BOCCA of een te gekke sandwich bar hoodie.",
-    "p3": "Zie jij jezelf al schitteren in onze hoodie? Meld je via de QR\u00a0code in een van onze vestigingen aan wanneer je langskomt en begin met sparen!",
+    "p3": "Zie jij jezelf al schitteren in onze hoodie? Meld je via de QR code in een van onze vestigingen aan wanneer je langskomt en begin met sparen!",
     "ctaLabel": "Ben je al member en wil je je saldo checken?",
     "ctaButton": "Check je saldo"
   },
@@ -122,5 +124,8 @@
       "saturday": "Zaterdag",
       "sunday": "Zondag"
     }
+  },
+  "photoMarquee": {
+    "label": "even binnenkijken"
   }
 }

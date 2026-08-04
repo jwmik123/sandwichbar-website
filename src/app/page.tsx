@@ -20,7 +20,8 @@ import { TestimonialsSection } from './components/testimonials-section'
 import { ContactSection } from './components/contact-section'
 import { AboutSection } from './components/about-section'
 import { CateringSection } from './components/catering-section'
-import { ImageSection } from './components/image-section'
+// import { ImageWallSection } from './components/image-wall-section'
+import { PhotoMarquee } from './components/photo-marquee'
 import { SandwichSlider } from './components/sandwich-slider'
 import { LocationSection } from './components/location-section'
 import { Footer } from './components/footer'
@@ -46,7 +47,8 @@ export default async function Home() {
       <SloganSection data={slogan.data} />
       <AboutSection data={aboutData.data} />
       <CateringSection data={cateringData.data} />
-      <ImageSection />
+      {/* <ImageWallSection /> */}
+      <PhotoMarquee />
       <SandwichSlider />
       <SocialMediaSection videos={socialMedia.data} />
       <MenuSection data={menu.data} />

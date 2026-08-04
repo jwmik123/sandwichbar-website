@@ -6,6 +6,9 @@ import { CateringForm } from '../../components/catering-form'
 import { HeroImageSlider } from '../../components/hero-image-slider'
 import { Footer } from '../../components/footer'
 import { TransitionLink } from '../../components/transition-link'
+import { CateringMenu } from '../../components/catering-menu'
+
+const MENU_PDF_URL = '/images/menu-catering.pdf'
 
 export default async function CateringPage() {
   const locale = await getLocale()
@@ -104,6 +107,23 @@ export default async function CateringPage() {
           </div>
         </section>
       )}
+
+      {/* ── Menu PDF ─────────────────────────────────────────────────────── */}
+      <section id="catering-menu" className="bg-plum px-6 py-24">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-10 flex flex-col items-center gap-3 text-center">
+            <h2 className="text-4xl font-bold uppercase leading-tight tracking-tight text-cream md:text-5xl">
+              {t('menuTitle')}
+            </h2>
+            <p className="max-w-2xl text-lg leading-relaxed text-cream/75">
+              {t('menuSubtitle')}
+            </p>
+          </div>
+          <div className="mx-auto max-w-3xl">
+            <CateringMenu url={MENU_PDF_URL} />
+          </div>
+        </div>
+      </section>
 
       {/* ── Form ─────────────────────────────────────────────────────────── */}
       <section className="bg-cream px-6 pb-24">

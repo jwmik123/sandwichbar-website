@@ -17,7 +17,8 @@ import { SocialMediaSection } from '../components/social-media-section'
 // import { MenuSection } from '../components/menu-section'
 import { TestimonialsSection } from '../components/testimonials-section'
 import { AboutSection } from '../components/about-section'
-import { ImageSection } from '../components/image-section'
+// import { ImageWallSection } from '../components/image-wall-section'
+import { PhotoMarquee } from '../components/photo-marquee'
 import { SandwichSlider } from '../components/sandwich-slider'
 import { LocationSection } from '../components/location-section'
 import { Footer } from '../components/footer'
@@ -55,10 +56,11 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       <SloganSection data={slogan.data} />
       <AboutSection data={aboutData.data} />
       <CateringSection data={cateringData.data} />
+      {/* <ImageWallSection /> */}
+      <PhotoMarquee />
       <MemberSection />
 
       <SandwichSlider />
-      <ImageSection />
       <SocialMediaSection videos={videos} />
       {/* <MenuSection data={menu.data} /> */}
       <TestimonialsSection data={testimonials.data} />

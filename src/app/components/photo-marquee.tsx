@@ -61,9 +61,9 @@ export function PhotoMarquee() {
 
   return (
     <section ref={sectionRef} className="bg-cream py-16 md:py-24 overflow-hidden">
-      <p className="mb-8 md:mb-12 px-6 text-center text-sm font-semibold uppercase tracking-widest text-plum/50">
+      {/* <p className="mb-8 md:mb-12 px-6 text-center text-sm font-semibold uppercase tracking-widest text-plum/50">
         {t('label')}
-      </p>
+      </p> */}
 
       <div ref={trackRef} className="flex w-max will-change-transform">
         {[...LOCATIESHOOT_IMAGES, ...LOCATIESHOOT_IMAGES].map((src, i) => (

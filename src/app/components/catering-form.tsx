@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useTranslations } from 'next-intl'
+import { pushToDataLayer, splitName, toE164 } from '@/lib/analytics'
 
 type FormData = {
   companyName: string
@@ -32,6 +33,30 @@ function getTomorrowDate(): string {
   return d.toISOString().split('T')[0]
 }
 
+// GA4 lead event for the free trial lunch box form (no value/currency — the box is free)
+function trackLeadSubmit(form: FormData) {
+  const { firstName, lastName } = splitName(form.name)
+
+  pushToDataLayer({
+    event: 'generate_lead',
+    form_name: 'proeflunchbox_trial_box',
+    delivery_date: form.deliveryDate,
+    delivery_time: form.deliveryTime,
+    user_data: {
+      email: form.email,
+      phone_number: toE164(form.phone),
+      address: {
+        first_name: firstName,
+        last_name: lastName,
+        street: form.address,
+        postal_code: form.postalCode,
+        country: 'NL',
+      },
+      company_name: form.companyName,
+    },
+  })
+}
+
 export function CateringForm() {
   const t = useTranslations('cateringPage')
   const [form, setForm] = useState<FormData>(INITIAL)
@@ -51,6 +76,7 @@ export function CateringForm() {
         body: JSON.stringify(form),
       })
       if (res.ok) {
+        trackLeadSubmit(form)
         setStatus('success')
         setForm(INITIAL)
       } else {

@@ -82,7 +82,7 @@ export function CateringSection({ data }: { data?: CateringSectionData | null })
             )}
             {data.freeTestLunchText && (
               <TransitionLink
-                href="/catering"
+                href="/catering#catering-form"
                 className="rounded-full border border-cream/40 bg-transparent px-7 py-3 text-sm font-semibold text-cream transition-colors duration-200 hover:bg-cream hover:text-muted"
                 data-sanity={attr.scope('freeTestLunchText').toString()}
               >

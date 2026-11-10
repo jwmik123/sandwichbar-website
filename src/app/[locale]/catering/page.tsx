@@ -7,6 +7,7 @@ import { HeroImageSlider } from '../../components/hero-image-slider'
 import { Footer } from '../../components/footer'
 import { TransitionLink } from '../../components/transition-link'
 import { CateringMenu } from '../../components/catering-menu'
+import { ScrollToHash } from '../../components/scroll-to-hash'
 
 const MENU_PDF_URL = '/images/menu-catering.pdf'
 
@@ -24,6 +25,7 @@ export default async function CateringPage() {
 
   return (
     <main className="min-h-screen bg-cream">
+      <ScrollToHash />
 
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <section className="bg-plum overflow-hidden px-6 pt-0 pb-0">
@@ -126,7 +128,7 @@ export default async function CateringPage() {
       </section>
 
       {/* ── Form ─────────────────────────────────────────────────────────── */}
-      <section className="bg-cream px-6 pb-24">
+      <section id="catering-form" className="scroll-mt-24 bg-cream px-6 pb-24">
         <div className="mx-auto max-w-6xl">
           <div className="border-t border-dark/10 pt-16">
             <div className="grid grid-cols-1 gap-16 lg:grid-cols-2">

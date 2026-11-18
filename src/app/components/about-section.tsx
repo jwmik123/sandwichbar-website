@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { PortableText } from '@portabletext/react'
 import { createDataAttribute } from 'next-sanity'
-import { DraggableSticker } from './draggable-sticker'
+import { PeelSticker } from './peel-sticker'
 
 type AboutSectionData = {
   _id: string
@@ -42,26 +42,14 @@ export function AboutSection({ data }: { data?: AboutSectionData | null }) {
         )}
       </div>
 
-      {/* <DraggableSticker
-        src="/images/car.png"
-        alt="The Sandwich Bar auto"
-        initialX={400}
-        initialY={-120}
-        rotation={-6}
-        width={180}
-        height={180}
-        jiggleDelay={0}
-        baseZ={10}
-      /> */}
-      <DraggableSticker
-        src="/images/Mannetjes-broodje-beige.png"
+      <PeelSticker
+        src="/images/mannetje-sticker.png"
         alt="Mannetje met broodje"
-        className="invert opacity-80"
-        initialRight={80}
-        initialBottom={40}
-        rotation={5}
-        width={250}
-        height={168}
+        width={230}
+        rotation={-7}
+        rollDirection={45}
+        initialRight={125}
+        initialBottom={-30}
         jiggleDelay={1.1}
         baseZ={11}
       />
